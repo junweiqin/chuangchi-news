@@ -14,6 +14,9 @@ type NewsItem = {
   featured?: boolean;
 };
 
+// Official publishing source: every approved company-news release must update
+// this list, move `featured` to the new headline when appropriate, pass tests,
+// and be pushed to `main` so GitHub Pages updates chuangchi.cc.
 const NEWS: NewsItem[] = [
   {
     id: 1,
