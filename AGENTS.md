@@ -12,10 +12,10 @@
 
 ## 内容入口
 
-- 当前新闻数据源是 `app/page.tsx` 顶部的 `NEWS` 数组。
+- 当前新闻数据源是 `app/news-data.ts` 中的 `NEWS` 数组；每条消息生成独立的 `/news/{id}` 静态详情页。
 - 新消息必须包含唯一 `id`、`category`、`date`、`title`、`summary` 和 `content`。
 - `category` 只能使用：`公司动态`、`官方公告`、`创驰观察`。
-- 最新重点消息设置 `featured: true`，同时移除旧消息的 `featured`，确保首页只有一个头条。
+- 最新重点消息可设置 `featured: true`，同时移除旧消息的 `featured`，用于 sitemap 优先级等重点内容信号。
 - 默认按发布日期从新到旧排列；同日内容按实际发布时间或用户指定顺序排列。
 
 ## 事实口径
@@ -28,7 +28,7 @@
 ## 发布检查
 
 1. 检查标题、日期、分类、摘要、正文和头条状态。
-2. 运行 `pnpm test`，并确保 GitHub Pages 静态构建兼容。
+2. 运行 `pnpm lint`、`pnpm test` 与 `GITHUB_PAGES=true pnpm exec next build`，并确保 GitHub Pages 静态构建兼容。
 3. 检查提交中不含账号凭据、内部资料或未授权信息。
 4. 提交并推送到 `main`，等待 `Deploy website` 工作流成功。
 5. 验证 `chuangchi.cc` 返回最新标题；HTTPS 未就绪时同时说明证书状态。

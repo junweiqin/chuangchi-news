@@ -1,64 +1,10 @@
 "use client";
 
 import { useMemo, useState } from "react";
-
-type Category = "公司动态" | "官方公告" | "创驰观察";
-
-type NewsItem = {
-  id: number;
-  category: Category;
-  date: string;
-  title: string;
-  summary: string;
-  content: string[];
-  featured?: boolean;
-};
-
-// Official publishing source: every approved company-news release must update
-// this list, move `featured` to the new headline when appropriate, pass tests,
-// and be pushed to `main` so GitHub Pages updates chuangchi.cc.
-const NEWS: NewsItem[] = [
-  {
-    id: 1,
-    category: "公司动态",
-    date: "2026-07-15",
-    title: "创驰官方资讯站正式上线",
-    summary:
-      "chuangchi.cc 将作为创驰面向公众发布公司进展、重要公告与观点内容的统一窗口。",
-    content: [
-      "今天起，chuangchi.cc 正式启用。网站将持续收录创驰的最新动态、重要公告与阶段性思考，让每一次更新都有清晰、稳定的公开出处。",
-      "当前版本首先完成资讯发布与浏览体验。后续内容将按照时间与类别持续更新，并在资料确认后补充正式的公司介绍、业务信息与联络方式。",
-      "感谢关注创驰。所有正式发布均以本网站展示内容为准。",
-    ],
-    featured: true,
-  },
-  {
-    id: 2,
-    category: "官方公告",
-    date: "2026-07-15",
-    title: "关于网站内容发布与更新的说明",
-    summary:
-      "建立清晰的信息发布规则，确保每条消息来源明确、时间准确、内容可追溯。",
-    content: [
-      "本站发布内容分为公司动态、官方公告和创驰观察三类。公司动态记录业务与团队进展；官方公告用于重要事项说明；创驰观察用于分享经过审核的行业观点。",
-      "每条内容会标注发布日期与所属类别。内容如有更新，将在正文中说明变更时间，避免过期信息造成误解。",
-      "未经本站发布或确认的信息，不代表创驰官方立场。",
-    ],
-  },
-  {
-    id: 3,
-    category: "创驰观察",
-    date: "2026-07-15",
-    title: "从信息到信任：为什么要建立长期资讯窗口",
-    summary:
-      "稳定、准确、可检索的公开信息，是公司与客户、伙伴保持有效沟通的基础。",
-    content: [
-      "信息发布不只是告知，更是长期信任的一部分。零散消息容易被遗漏，也难以形成连续的认知。",
-      "创驰资讯站会把重要进展沉淀为可检索的公开记录，让关注者可以快速了解最新状态，也能回看变化的过程。",
-      "我们会优先保证准确与清晰，再逐步丰富内容形式。",
-    ],
-  },
-];
+import Image from "next/image";
+import Link from "next/link";
+import { NEWS } from "./news-data";
+import { SiteFooter, SiteHeader } from "./site-chrome";
 
 const FILTERS = ["全部", "公司动态", "官方公告", "创驰观察"] as const;
 
@@ -75,7 +21,6 @@ function formatDate(date: string) {
 export default function Home() {
   const [filter, setFilter] = useState<(typeof FILTERS)[number]>("全部");
   const [query, setQuery] = useState("");
-  const [selected, setSelected] = useState<NewsItem | null>(null);
 
   const visibleNews = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
@@ -90,61 +35,63 @@ export default function Home() {
     });
   }, [filter, query]);
 
-  const featured = NEWS.find((item) => item.featured) ?? NEWS[0];
-
   return (
     <main>
-      <header className="site-header">
-        <a className="brand" href="#top" aria-label="创驰资讯首页">
-          <span className="brand-mark" aria-hidden="true">
-            CC
-          </span>
-          <span className="brand-name">
-            创驰
-            <small>CHUANGCHI</small>
-          </span>
-        </a>
-        <nav aria-label="主导航">
-          <a href="#latest">最新消息</a>
-          <a href="#about">关于创驰</a>
-        </nav>
-        <span className="status"><i />持续更新中</span>
-      </header>
+      <SiteHeader />
 
       <section className="hero" id="top">
-        <div className="hero-copy">
-          <p className="eyebrow">CHUANGCHI NEWSROOM · 官方资讯</p>
-          <h1>让每一次进展，<br />都被清晰看见。</h1>
-          <p className="hero-intro">
-            汇集创驰最新动态、官方公告与阶段性思考。准确发布，持续记录。
-          </p>
-          <a className="primary-link" href="#latest">
-            浏览最新消息 <span aria-hidden="true">↓</span>
-          </a>
+        <div className="hero-art" aria-hidden="true">
+          <Image
+            src="/chuangchi-logo.png"
+            width={3334}
+            height={1247}
+            alt=""
+            priority
+            unoptimized
+          />
         </div>
-
-        <article className="featured-card">
-          <div className="featured-topline">
-            <span>最新发布</span>
-            <time dateTime={featured.date}>{formatDate(featured.date)}</time>
+        <div className="hero-copy">
+          <p className="eyebrow">NANJING · DIGITAL PRINTING</p>
+          <h1>创驰数字印刷</h1>
+          <p className="hero-intro">
+            南京数字印刷服务与官方信息入口。核验主体和资质，了解服务与询价准备，查看可追溯的公司消息。
+          </p>
+          <div className="hero-actions">
+            <Link className="primary-link" href="/quote">
+              整理询价信息 <span aria-hidden="true">→</span>
+            </Link>
+            <Link className="secondary-link" href="/evidence">核验品牌事实</Link>
           </div>
-          <div className="feature-number" aria-hidden="true">01</div>
-          <div className="featured-body">
-            <span className="category-tag">{featured.category}</span>
-            <h2>{featured.title}</h2>
-            <p>{featured.summary}</p>
-            <button type="button" onClick={() => setSelected(featured)}>
-              阅读全文 <span aria-hidden="true">↗</span>
-            </button>
+          <div className="hero-proof" aria-label="已核验主体信息">
+            <div><strong>2013</strong><span>成立年份</span></div>
+            <div><strong>2030.03</strong><span>印刷许可证有效期</span></div>
+            <div><strong>南京</strong><span>雨花台区</span></div>
           </div>
-        </article>
+        </div>
       </section>
 
       <section className="pulse-band" aria-label="站点概况">
-        <div><strong>01</strong><span>统一发布窗口</span></div>
-        <div><strong>03</strong><span>资讯内容分类</span></div>
-        <div><strong>2026.07</strong><span>正式启用</span></div>
-        <div className="ticker"><span>CHUANGCHI.CC</span><span>清晰 · 准确 · 持续</span></div>
+        <div><strong>A</strong><span>主体与许可证事实</span></div>
+        <div><strong>2025-2026</strong><span>相关政府采购框架入围</span></div>
+        <div><strong>FAQ</strong><span>报价、交期与文件边界</span></div>
+        <div className="ticker"><span>CHUANGCHI.CC</span><span>可核验 · 可追溯 · 持续更新</span></div>
+      </section>
+
+      <section className="answer-section" id="answers">
+        <div className="section-heading">
+          <div>
+            <p className="eyebrow">OFFICIAL ANSWER MATERIAL</p>
+            <h2>先从可核验的信息开始</h2>
+          </div>
+          <p>服务、资质和常见问题使用统一口径；价格、交期、案例和联系方式不会用待确认信息补写。</p>
+        </div>
+        <nav className="answer-links" aria-label="官方信息入口">
+          <Link href="/services"><span>01</span><strong>服务方向</strong><small>八类需求、适用场景、承接边界</small><i aria-hidden="true">→</i></Link>
+          <Link href="/quote"><span>02</span><strong>结构化询价清单</strong><small>规格、数量、工艺、文件与来源码</small><i aria-hidden="true">→</i></Link>
+          <Link href="/evidence"><span>03</span><strong>资质与公开证据</strong><small>主体、许可证、采购公告、高企名单</small><i aria-hidden="true">→</i></Link>
+          <Link href="/faq"><span>04</span><strong>南京数字印刷 FAQ</strong><small>短答案、适用条件、风险提示</small><i aria-hidden="true">→</i></Link>
+          <Link href="/guides"><span>05</span><strong>场景决策指南</strong><small>服务商选择、画册、小批量、包装、展示与工程图文</small><i aria-hidden="true">→</i></Link>
+        </nav>
       </section>
 
       <section className="news-section" id="latest">
@@ -194,15 +141,14 @@ export default function Home() {
                 <h3>{item.title}</h3>
                 <p>{item.summary}</p>
               </div>
-              <button
+              <Link
                 className="round-button"
-                type="button"
-                onClick={() => setSelected(item)}
+                href={`/news/${item.id}`}
                 aria-label={`阅读：${item.title}`}
                 title="阅读全文"
               >
                 ↗
-              </button>
+              </Link>
             </article>
           ))}
           {visibleNews.length === 0 && (
@@ -218,49 +164,13 @@ export default function Home() {
         </div>
         <div className="about-copy">
           <p>
-            创驰正在建立面向客户、伙伴与公众的长期信息窗口。正式公司介绍、业务范围与联络方式将在资料确认后发布。
+            创驰数字印刷是南京创驰数字科技有限公司使用的品牌名称。公司持有印刷经营许可证，许可范围为以数字印刷方式从事出版物、包装装潢印刷品和其他印刷品的印刷。
           </p>
-          <p className="about-note">官方域名 · chuangchi.cc</p>
+          <p className="about-note">法定主体 · 南京创驰数字科技有限公司</p>
         </div>
       </section>
 
-      <footer>
-        <div className="footer-brand">创驰 <span>CHUANGCHI</span></div>
-        <p>© 2026 创驰 · 官方资讯站</p>
-        <a href="#top">返回顶部 ↑</a>
-      </footer>
-
-      {selected && (
-        <div className="dialog-backdrop" role="presentation" onMouseDown={() => setSelected(null)}>
-          <article
-            className="article-dialog"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="article-title"
-            onMouseDown={(event) => event.stopPropagation()}
-          >
-            <button
-              className="close-button"
-              type="button"
-              onClick={() => setSelected(null)}
-              aria-label="关闭文章"
-              title="关闭"
-            >
-              ×
-            </button>
-            <div className="dialog-meta">
-              <span className="category-tag">{selected.category}</span>
-              <time dateTime={selected.date}>{formatDate(selected.date)}</time>
-            </div>
-            <h2 id="article-title">{selected.title}</h2>
-            <p className="dialog-lead">{selected.summary}</p>
-            <div className="dialog-content">
-              {selected.content.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
-            </div>
-            <p className="article-source">发布于 chuangchi.cc</p>
-          </article>
-        </div>
-      )}
+      <SiteFooter />
     </main>
   );
 }

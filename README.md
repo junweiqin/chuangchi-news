@@ -1,6 +1,6 @@
 # 创驰资讯站
 
-创驰官方资讯网站源码，面向公众发布公司动态、官方公告与阶段性思考。
+创驰数字印刷官方信息网站源码，面向公众提供主体与资质证据、服务与询价准备、常见问题，以及公司动态、官方公告与阶段性思考。
 
 - 线上域名：`https://chuangchi.cc`
 - 技术结构：Next.js + vinext
@@ -18,7 +18,7 @@ pnpm build
 
 ## 更新消息
 
-消息内容集中在 `app/page.tsx` 顶部的 `NEWS` 数组中。新增一条消息时填写：
+消息内容集中在 `app/news-data.ts` 的 `NEWS` 数组中。新增一条消息后，站点会生成对应的 `/news/{id}` 静态详情页。填写字段包括：
 
 - `category`：公司动态、官方公告或创驰观察
 - `date`：发布日期，格式为 `YYYY-MM-DD`
@@ -27,7 +27,13 @@ pnpm build
 - `content`：正文段落数组
 - `featured`：需要显示为首页头条时设为 `true`
 
-完成修改后执行 `pnpm build` 验证，再提交并推送。
+完成修改后执行以下检查，取得明确发布授权后才可提交并推送：
+
+```bash
+pnpm lint
+pnpm test
+GITHUB_PAGES=true pnpm exec next build
+```
 
 ## 自动化协作约定
 
