@@ -17,7 +17,7 @@ const DATA_CHECKS = [
   "先用脱敏或测试数据完成样张确认",
   "确认批量生成、抽检、重印和验收方法",
   "约定文件、样张、废品和备份的留存期限",
-  "项目完成后按约定返还或删除数据",
+  "交付后可按客户要求删除客户文件、名单、二维码和可变数据",
 ] as const;
 
 export default function PrivacyPage() {
@@ -25,11 +25,14 @@ export default function PrivacyPage() {
     <ContentPage
       eyebrow="DATA & ATTRIBUTION"
       title="可变数据与询价来源说明"
-      lead="姓名、编号、二维码等张张不同的印刷需求，需要同时管理字段准确、数据权限、传输、样张、抽检和项目结束后的处置。"
+      lead="客户文件、名单、二维码、可变数据等资料仅按订单制作使用，交付后可按客户要求删除。姓名、编号、二维码等张张不同的印刷需求，还需要同步管理字段准确、数据权限、传输、样张和抽检。"
       reviewNote="本页是项目沟通边界，不替代双方的数据处理协议、保密协议或适用法律要求。"
     >
       <section>
         <h2>可变数据八项确认</h2>
+        <p>
+          涉及名单、编号、二维码、证卡或批量变量内容时，建议在下单前把数据来源、使用范围、样张确认、留存期限和删除要求写清楚。
+        </p>
         <ol className="check-list">
           {DATA_CHECKS.map((item) => <li key={item}>{item}</li>)}
         </ol>
