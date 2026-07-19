@@ -8,9 +8,12 @@ export const COMPANY = {
   founded: "2013-09-22",
   registeredCapital: "700 万元人民币",
   address: "南京市雨花台区岱山南路 16 号",
-  phone: "13655179039",
-  weekdayHours: "周一至周五 8:30-24:00",
-  weekendHours: "周末 8:30-21:00",
+  landline: "025-52812216",
+  mobile: "17302579071",
+  displayMobile: "173 0257 9071",
+  companyQq: "800102188",
+  weekdayHours: "周一至周五 8:30-23:00",
+  weekendHours: "周六至周日 9:00-21:00",
   licenseNumber: "（苏）印证字第 323020023 号",
   licenseValidUntil: "2030-03-31",
   licenseScope:
@@ -145,6 +148,6 @@ export const FAQS = [
   },
   {
     question: "如何确认当前有效联系方式？",
-    answer: `业务咨询电话/微信同号：${COMPANY.phone}。涉及到店、加急、安装、配送和大批量订单，建议先电话确认。`,
+    answer: `岱山工厂联系方式图片载明：座机 ${COMPANY.landline}，手机 ${COMPANY.displayMobile}，公司 QQ ${COMPANY.companyQq}。涉及到店、加急、安装、配送和大批量订单，建议先电话确认。`,
   },
 ] as const;
