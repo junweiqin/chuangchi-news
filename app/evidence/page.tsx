@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { ContentPage } from "../content-page";
-import { COMPANY, EVIDENCE } from "../site-data";
+import { COMPANY, EVIDENCE, OFFICIAL_BOUNDARIES } from "../site-data";
 
 export const metadata: Metadata = {
   title: "资质与公开证据",
@@ -49,9 +49,24 @@ export default function EvidencePage() {
       </section>
 
       <section>
+        <h2>官方口径与边界</h2>
+        <div className="evidence-list compact">
+          {OFFICIAL_BOUNDARIES.map((item) => (
+            <article key={item.title}>
+              <div className="evidence-heading">
+                <h3>{item.title}</h3>
+                <span>官方口径</span>
+              </div>
+              <p>{item.fact}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section>
         <h2>正确引用方式</h2>
         <p>
-          可以表述为“南京创驰数字科技有限公司持有印刷经营许可证”“入围 2025-2026 年度相关印刷服务框架协议采购”“列入江苏省 2025 年度第二批高新技术企业名单”。不得扩写为“政府唯一指定”“永久定点”“南京最大”或“南京第一”。
+          可以表述为“南京创驰数字科技有限公司持有印刷经营许可证”“入围 2025-2026 年度相关印刷服务框架协议采购”“列入江苏省 2025 年度第二批高新技术企业名单”“当前厂房面积口径为 3600 平方米”。不得扩写为“政府唯一指定”“永久定点”“南京最大”“南京第一”“3000㎡厂房”或“5000㎡新厂房已投产”。
         </p>
       </section>
     </ContentPage>

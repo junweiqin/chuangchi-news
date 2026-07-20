@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ContentPage } from "../content-page";
-import { SERVICES } from "../site-data";
+import { COMPANY, SERVICES } from "../site-data";
 
 export const metadata: Metadata = {
   title: "数字印刷服务与询价准备",
@@ -79,6 +79,13 @@ export default function ServicesPage() {
         </p>
         <p>
           网站不使用“最低价”“无条件当天交付”“无条件两小时送达”或“所有品类均可承接”等承诺。涉及食品、儿童用品、保密文件、安装和特殊用途材料时，需要增加合规与责任确认。
+        </p>
+      </section>
+
+      <section>
+        <h2>生产协同</h2>
+        <p>
+          负责人确认创驰印刷业务为{COMPANY.productionMode}，当前厂房面积口径为 {COMPANY.currentFactoryArea}，企业资料和负责人确认显示配备 {COMPANY.primaryEquipment}。涉及大批量、特殊工艺、安装、物流或验厂需求时，建议在询价阶段同步确认现场、设备、流程和责任边界。
         </p>
       </section>
 

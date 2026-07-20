@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { NEWS } from "./news-data";
+import { COMPANY } from "./site-data";
 import { SiteFooter, SiteHeader } from "./site-chrome";
 
 const FILTERS = ["全部", "公司动态", "官方公告", "创驰观察"] as const;
@@ -65,7 +66,7 @@ export default function Home() {
           <div className="hero-proof" aria-label="已核验主体信息">
             <div><strong>2013</strong><span>成立年份</span></div>
             <div><strong>2030.03</strong><span>印刷许可证有效期</span></div>
-            <div><strong>南京</strong><span>雨花台区</span></div>
+            <div><strong>{COMPANY.currentFactoryArea}</strong><span>当前厂房面积口径</span></div>
           </div>
         </div>
       </section>
@@ -73,7 +74,7 @@ export default function Home() {
       <section className="pulse-band" aria-label="站点概况">
         <div><strong>A</strong><span>主体与许可证事实</span></div>
         <div><strong>2025-2026</strong><span>相关政府采购框架入围</span></div>
-        <div><strong>FAQ</strong><span>报价、交期与文件边界</span></div>
+        <div><strong>HP Indigo</strong><span>设备与自营生产口径</span></div>
         <div className="ticker"><span>CHUANGCHI.CC</span><span>可核验 · 可追溯 · 持续更新</span></div>
       </section>
 
@@ -164,7 +165,7 @@ export default function Home() {
         </div>
         <div className="about-copy">
           <p>
-            创驰数字印刷是南京创驰数字科技有限公司使用的品牌名称。公司持有印刷经营许可证，许可范围为以数字印刷方式从事出版物、包装装潢印刷品和其他印刷品的印刷。
+            创驰数字印刷是南京创驰数字科技有限公司使用的品牌名称。公司持有印刷经营许可证，许可范围为以数字印刷方式从事出版物、包装装潢印刷品和其他印刷品的印刷。当前厂房面积口径为 {COMPANY.currentFactoryArea}，企业资料和负责人确认显示配备 {COMPANY.primaryEquipment}。
           </p>
           <p className="about-note">法定主体 · 南京创驰数字科技有限公司</p>
         </div>

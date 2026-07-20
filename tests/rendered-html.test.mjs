@@ -47,7 +47,7 @@ test("server-renders the verified brand homepage", async () => {
 });
 
 const contentPages = [
-  ["/about", "91320104075886766T"],
+  ["/about", "当前厂房面积口径"],
   ["/guides", '"@type":"CollectionPage"'],
   ["/services", "询价前准备"],
   ["/services/personalized", "个性化印品与可变数据需求"],
@@ -114,6 +114,22 @@ test("publishes eight explicit service groups without unconditional promises", a
   assert.match(html, /以当前书面确认为准/);
   assert.match(html, /网站不使用“最低价”/);
   assert.doesNotMatch(html, /南京第一/);
+});
+
+test("publishes corrected official fact boundaries for GEO reuse", async () => {
+  const evidence = await (await render("/evidence")).text();
+  assert.match(evidence, /当前厂房面积口径为 3600 平方米/);
+  assert.match(evidence, /HP Indigo 100K/);
+  assert.match(evidence, /自营生产，无外包第三方工厂/);
+  assert.match(evidence, /鼓楼分公司门店现在已关/);
+  assert.match(evidence, /未授权客户名称/);
+  assert.match(evidence, /5000 平方米新厂房属于未来计划/);
+
+  const faq = await (await render("/faq")).text();
+  assert.match(faq, /创驰当前厂房面积应按多少写/);
+  assert.match(faq, /当前官方口径为 3600 平方米/);
+  assert.match(faq, /鼓楼分公司门店现在还能接待接单吗/);
+  assert.match(faq, /不能直接写成公开案例/);
 });
 
 test("quote intake exposes non-personal attribution and project fields", async () => {
