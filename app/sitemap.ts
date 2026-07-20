@@ -21,6 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/delivery",
     "/privacy",
     "/evidence",
+    "/factory",
     "/faq",
     "/contact",
   ];

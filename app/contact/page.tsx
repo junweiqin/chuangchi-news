@@ -22,6 +22,7 @@ export default function ContactPage() {
         <dl className="fact-list">
           <div><dt>官方资讯域名</dt><dd>{SITE_URL}</dd></div>
           <div><dt>法定主体</dt><dd>{COMPANY.legalName}</dd></div>
+          <div><dt>最新联系口径</dt><dd>{COMPANY.contactSource}</dd></div>
           <div><dt>证照地址</dt><dd>{COMPANY.address}</dd></div>
           <div><dt>座机</dt><dd>{COMPANY.landline}</dd></div>
           <div><dt>手机</dt><dd>{COMPANY.displayMobile}</dd></div>
@@ -37,7 +38,7 @@ export default function ContactPage() {
           <li>到店前建议电话确认当日排产、取件时间和接待安排。</li>
           <li>小批量可当天取，大批量按订单评估。</li>
           <li>支持南京及外地订单咨询，配送和时效按订单确认。</li>
-          <li>地图平台中的官方门店入口</li>
+          <li>第三方地图、黄页或 AI 答案如出现旧门店、旧电话或旧营业时间，应以本页岱山工厂联系方式为准。</li>
         </ul>
       </section>
     </ContentPage>

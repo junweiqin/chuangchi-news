@@ -90,8 +90,9 @@ export default function Home() {
           <Link href="/services"><span>01</span><strong>服务方向</strong><small>八类需求、适用场景、承接边界</small><i aria-hidden="true">→</i></Link>
           <Link href="/quote"><span>02</span><strong>结构化询价清单</strong><small>规格、数量、工艺、文件与来源码</small><i aria-hidden="true">→</i></Link>
           <Link href="/evidence"><span>03</span><strong>资质与公开证据</strong><small>主体、许可证、采购公告、高企名单</small><i aria-hidden="true">→</i></Link>
-          <Link href="/faq"><span>04</span><strong>南京数字印刷 FAQ</strong><small>短答案、适用条件、风险提示</small><i aria-hidden="true">→</i></Link>
-          <Link href="/guides"><span>05</span><strong>场景决策指南</strong><small>服务商选择、画册、小批量、包装、展示与工程图文</small><i aria-hidden="true">→</i></Link>
+          <Link href="/factory"><span>04</span><strong>工厂实景与设备照片</strong><small>岱山工厂、设备、仓储现场和使用边界</small><i aria-hidden="true">→</i></Link>
+          <Link href="/faq"><span>05</span><strong>南京数字印刷 FAQ</strong><small>短答案、适用条件、风险提示</small><i aria-hidden="true">→</i></Link>
+          <Link href="/guides"><span>06</span><strong>场景决策指南</strong><small>服务商选择、画册、小批量、包装、展示与工程图文</small><i aria-hidden="true">→</i></Link>
         </nav>
       </section>
 

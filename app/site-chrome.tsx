@@ -19,6 +19,7 @@ export function SiteHeader() {
         <Link href="/guides">指南</Link>
         <Link href="/quote">询价准备</Link>
         <Link href="/evidence">资质证据</Link>
+        <Link href="/factory">工厂实景</Link>
         <Link href="/faq">常见问题</Link>
         <Link href="/#latest">最新消息</Link>
         <Link href="/about">关于</Link>
@@ -41,6 +42,7 @@ export function SiteFooter() {
         <Link href="/guides">决策指南</Link>
         <Link href="/quote">询价准备</Link>
         <Link href="/evidence">核验信息</Link>
+        <Link href="/factory">工厂实景</Link>
         <Link href="/contact">联系状态</Link>
         <Link href="/">返回首页</Link>
       </nav>

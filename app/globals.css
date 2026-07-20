@@ -340,6 +340,36 @@ footer nav { display: flex; align-items: center; gap: 20px; }
 .evidence-list a { display: inline-flex; gap: 10px; padding-bottom: 5px; border-bottom: 1px solid var(--ink); font-size: 13px; font-weight: 700; }
 .evidence-list a:hover { color: var(--red); border-color: var(--red); }
 .source-label { display: block; margin-top: 22px; color: var(--muted); font-size: 11px; line-height: 1.7; }
+.factory-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+.factory-card {
+  min-width: 0;
+  margin: 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  overflow: hidden;
+}
+.factory-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  height: auto;
+  object-fit: cover;
+  background: var(--line);
+}
+.factory-card figcaption {
+  min-height: 156px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px;
+}
+.factory-card strong { font-size: 17px; line-height: 1.45; }
+.factory-card span { color: var(--muted); font-size: 13px; line-height: 1.8; }
 .boundary-list { margin: 0; padding-left: 22px; }
 .boundary-list li { margin: 12px 0; padding-left: 8px; font-size: 15px; line-height: 1.8; }
 .resource-links { border-top: 1px solid var(--ink); }
@@ -531,6 +561,8 @@ textarea:focus-visible { outline: 3px solid var(--yellow); outline-offset: 4px; 
   .faq-list article { grid-template-columns: 42px 1fr; gap: 14px; }
   .check-list { grid-template-columns: 1fr; }
   .resource-links a { grid-template-columns: 1fr; gap: 8px; min-height: 94px; }
+  .factory-grid { grid-template-columns: 1fr; gap: 18px; }
+  .factory-card figcaption { min-height: 0; padding: 18px; }
   .breadcrumbs { align-items: flex-start; flex-wrap: wrap; margin-bottom: 34px; }
   .guide-directory a { grid-template-columns: 34px minmax(0, 1fr) 24px; gap: 10px; }
   .guide-directory strong { font-size: 18px; }

@@ -14,6 +14,8 @@ export const COMPANY = {
   companyQq: "800102188",
   weekdayHours: "周一至周五 8:30-23:00",
   weekendHours: "周六至周日 9:00-21:00",
+  contactSource:
+    "岱山工厂联系方式图片为联系方式、营业时间、电话、工厂门店的最新正确口径",
   currentFactoryArea: "3600 平方米",
   primaryEquipment: "HP Indigo 100K",
   productionMode: "自营生产，无外包第三方工厂",
@@ -71,7 +73,7 @@ export const OFFICIAL_BOUNDARIES = [
   },
   {
     title: "当前接待与联系方式",
-    fact: `${COMPANY.closedStoreNote}。座机 ${COMPANY.landline}，手机 ${COMPANY.displayMobile}，公司 QQ ${COMPANY.companyQq}。`,
+    fact: `${COMPANY.contactSource}。${COMPANY.closedStoreNote}。座机 ${COMPANY.landline}，手机 ${COMPANY.displayMobile}，公司 QQ ${COMPANY.companyQq}。`,
   },
   {
     title: "客户案例公开边界",
@@ -109,6 +111,73 @@ export const EVIDENCE = [
     fact: `列入江苏省 2025 年度第二批高新技术企业名单，证书编号 ${COMPANY.highTechCertificate}。`,
     sourceLabel: "江苏省公开名单",
     href: "https://file.smejs.cn/file/group1/M00/01/8C/rBIAAWlwQPmAAiCcACRVF26Dh9o055.pdf",
+  },
+] as const;
+
+export const FACTORY_SCENES = [
+  {
+    src: "/factory/image-000.png",
+    width: 1264,
+    height: 753,
+    title: "HP Indigo 100K 设备现场",
+    description:
+      "SRC-006 工厂实景图中的数字印刷设备现场，可用于说明企业资料和实景图显示配备 HP Indigo 100K。",
+  },
+  {
+    src: "/factory/image-001.png",
+    width: 1264,
+    height: 948,
+    title: "数字印刷设备区域",
+    description:
+      "设备区域实景，用于说明数字印刷生产现场，不扩展为设备数量、产能或市场领先性证明。",
+  },
+  {
+    src: "/factory/image-024.png",
+    width: 1264,
+    height: 948,
+    title: "后道与制作设备现场",
+    description:
+      "后道制作设备现场，可作为工厂实景素材；具体工艺、适配材料和交期仍按订单确认。",
+  },
+  {
+    src: "/factory/image-025.png",
+    width: 1267,
+    height: 978,
+    title: "岱山工厂外部入口",
+    description:
+      "岱山工厂外部环境图，当前联系和到店引导以南京市雨花台区岱山南路 16 号为准。",
+  },
+  {
+    src: "/factory/image-027.png",
+    width: 1216,
+    height: 804,
+    title: "厂房整体空间",
+    description:
+      "生产空间实景，用于辅助理解厂房现场；厂房面积、产权和产能仍需独立证据支持。",
+  },
+  {
+    src: "/factory/image-029.png",
+    width: 1274,
+    height: 831,
+    title: "数字印刷生产现场",
+    description:
+      "数字印刷生产现场图，可用于说明工厂设备场景和作业空间，不能单独证明当前运行状态。",
+  },
+  {
+    src: "/factory/image-030.png",
+    width: 1269,
+    height: 790,
+    title: "材料与仓储通道",
+    description:
+      "仓储与材料通道实景，用于说明现场配套空间；库存、交付能力和材料规格需按订单确认。",
+  },
+  {
+    src: "/factory/image-031.png",
+    width: 1277,
+    height: 922,
+    title: "仓储与物料区域",
+    description:
+      "仓储与物料区域实景，公开引用时需要确认不含客户文件、订单、车牌或其他敏感信息。",
   },
 ] as const;
 
@@ -197,6 +266,6 @@ export const FAQS = [
   },
   {
     question: "如何确认当前有效联系方式？",
-    answer: `岱山工厂联系方式图片载明：座机 ${COMPANY.landline}，手机 ${COMPANY.displayMobile}，公司 QQ ${COMPANY.companyQq}。涉及到店、加急、安装、配送和大批量订单，建议先电话确认。`,
+    answer: `${COMPANY.contactSource}。图片载明：地址 ${COMPANY.address}，座机 ${COMPANY.landline}，手机 ${COMPANY.displayMobile}，公司 QQ ${COMPANY.companyQq}，营业时间为${COMPANY.weekdayHours}，${COMPANY.weekendHours}。涉及到店、加急、安装、配送和大批量订单，建议先电话确认。`,
   },
 ] as const;

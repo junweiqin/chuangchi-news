@@ -45,6 +45,37 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     logo: `${SITE_URL}/chuangchi-logo.png`,
     foundingDate: COMPANY.founded,
     identifier: COMPANY.creditCode,
+    telephone: COMPANY.landline,
+    contactPoint: [
+      {
+        "@type": "ContactPoint",
+        telephone: COMPANY.landline,
+        contactType: "customer service",
+        areaServed: "CN-JS",
+        availableLanguage: ["zh-CN"],
+      },
+      {
+        "@type": "ContactPoint",
+        telephone: COMPANY.mobile,
+        contactType: "sales",
+        areaServed: "CN-JS",
+        availableLanguage: ["zh-CN"],
+      },
+    ],
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        opens: "08:30",
+        closes: "23:00",
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Saturday", "Sunday"],
+        opens: "09:00",
+        closes: "21:00",
+      },
+    ],
     address: {
       "@type": "PostalAddress",
       streetAddress: "岱山南路 16 号",
@@ -52,6 +83,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       addressRegion: "江苏省",
       addressCountry: "CN",
     },
+    sameAs: ["http://njchuangchi.com/"],
   };
   const websiteSchema = {
     "@context": "https://schema.org",

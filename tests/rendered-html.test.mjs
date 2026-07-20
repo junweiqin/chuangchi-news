@@ -43,6 +43,8 @@ test("server-renders the verified brand homepage", async () => {
   assert.match(html, /创驰官方资讯站正式上线/);
   assert.match(html, /最新消息/);
   assert.match(html, /"@type":"Organization"/);
+  assert.match(html, /"telephone":"025-52812216"/);
+  assert.match(html, /"openingHoursSpecification"/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape/i);
 });
 
@@ -51,13 +53,14 @@ const contentPages = [
   ["/guides", '"@type":"CollectionPage"'],
   ["/services", "询价前准备"],
   ["/services/personalized", "个性化印品与可变数据需求"],
-  ["/quote", "来源码：CC-DIRECT"],
+  ["/quote", "南京印刷询价信息清单"],
   ["/file-checklist", '"@type":"HowTo"'],
   ["/delivery", '"@type":"FAQPage"'],
   ["/privacy", "utm_source"],
   ["/evidence", "（苏）印证字第 323020023 号"],
+  ["/factory", "SRC-006 工厂实景图"],
   ["/faq", "\"@type\":\"FAQPage\""],
-  ["/contact", "电话、微信、营业时间"],
+  ["/contact", "岱山工厂联系方式图片为联系方式"],
   ["/news/1", "今天起，chuangchi.cc 正式启用"],
 ];
 
@@ -140,6 +143,7 @@ test("quote intake exposes non-personal attribution and project fields", async (
   }
   assert.match(html, /"@type":"HowTo"/);
   assert.match(html, /不发布固定价格/);
+  assert.match(html, /尺寸、材质、数量、工艺、配送、文件状态和交期/);
   assert.doesNotMatch(html, /请输入手机号|请输入微信|请输入姓名/);
 });
 
@@ -172,7 +176,9 @@ test("serves a sitemap covering canonical content pages", async () => {
     "https://chuangchi.cc/delivery",
     "https://chuangchi.cc/privacy",
     "https://chuangchi.cc/evidence",
+    "https://chuangchi.cc/factory",
     "https://chuangchi.cc/faq",
+    "https://chuangchi.cc/contact",
     "https://chuangchi.cc/news/1",
   ]) {
     assert.match(body, new RegExp(url.replaceAll(".", "\\.")));
