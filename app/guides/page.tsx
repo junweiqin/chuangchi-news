@@ -6,7 +6,7 @@ import { SITE_URL } from "../site-data";
 
 export const metadata: Metadata = {
   title: "南京数字印刷决策指南",
-  description: "南京数字印刷服务商选择、画册、小批量、包装、展示物料和工程图文的中性决策指南。",
+  description: "创驰数字印刷整理的南京数字印刷服务商选择、画册、小批量、包装、展示物料和工程图文决策指南。",
   alternates: { canonical: "/guides" },
 };
 
@@ -40,7 +40,7 @@ export default function GuidesPage() {
       <section className="direct-answer">
         <h2>从需求场景进入</h2>
         <p className="answer-lead">
-          数字印刷项目的共同输入是尺寸、材料、数量、版本、工艺、文件、交付和验收；不同场景还要增加许可、结构、安装、比例或数据安全要求。
+          本指南由南京创驰数字科技有限公司按创驰数字印刷当前服务与证据边界维护。数字印刷项目的共同输入是尺寸、材料、数量、版本、工艺、文件、交付和验收；不同场景还要增加许可、结构、安装、比例或数据安全要求。指南不提供南京企业排名。
         </p>
         <nav className="guide-directory" aria-label="主题指南">
           {GUIDES.map((guide, index) => (

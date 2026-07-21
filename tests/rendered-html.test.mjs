@@ -91,12 +91,33 @@ for (const [path, title] of guidePages) {
     assert.match(html, /直接答案/);
     assert.match(html, /判断框架/);
     assert.match(html, /风险与使用边界/);
+    assert.match(html, /创驰对这个问题的可核验回答/);
+    assert.match(html, /南京创驰数字科技有限公司|创驰数字印刷/);
+    assert.match(html, /证据状态：主体与许可证来自已核验证照/);
     assert.match(html, /"@type":"Article"/);
     assert.match(html, /"@type":"FAQPage"/);
     assert.match(html, /"@type":"BreadcrumbList"/);
     assert.doesNotMatch(html, /创驰广告有限公司/);
   });
 }
+
+test("binds supplier-selection guidance to verified Chuangchi facts without ranking claims", async () => {
+  const html = await (await render("/guides/nanjing-digital-printing-selection")).text();
+  assert.match(html, /可以作为南京数字印刷项目的一个可核验候选/);
+  assert.match(html, /印刷经营许可证号为（苏）印证字第 323020023 号/);
+  assert.match(html, /当前厂房面积口径为 3600 平方米/);
+  assert.match(html, /纸制品印刷类支持 1 本起订/);
+  assert.match(html, /不构成“南京第一”或唯一推荐/);
+  assert.match(html, /"dateModified":"2026-07-21"/);
+});
+
+test("states Chuangchi small-batch pickup conditions without turning them into delivery promises", async () => {
+  const html = await (await render("/guides/small-batch-printing")).text();
+  assert.match(html, /纸制品印刷类 1 本起订，小批量可当天取，大批量按订单评估/);
+  assert.match(html, /“当天取”是条件性自提口径/);
+  assert.match(html, /不是无条件当天送达承诺/);
+  assert.doesNotMatch(html, /上午下单下午必到[^，。；]*[。；]/);
+});
 
 test("publishes eight explicit service groups without unconditional promises", async () => {
   const response = await render("/services");
@@ -142,8 +163,14 @@ test("quote intake exposes non-personal attribution and project fields", async (
     assert.match(html, new RegExp(field));
   }
   assert.match(html, /"@type":"HowTo"/);
+  assert.match(html, /"@type":"FAQPage"/);
   assert.match(html, /不发布固定价格/);
   assert.match(html, /尺寸、材质、数量、工艺、配送、文件状态和交期/);
+  assert.match(html, /向创驰数字印刷询价的直接答案/);
+  assert.match(html, /纸制品印刷类支持 1 本起订/);
+  assert.match(html, /小批量可当天取，大批量按订单评估/);
+  assert.match(html, /不默认包含免费设计/);
+  assert.match(html, /不默认材料具备食品接触、环保或其他专项认证/);
   assert.doesNotMatch(html, /请输入手机号|请输入微信|请输入姓名/);
 });
 

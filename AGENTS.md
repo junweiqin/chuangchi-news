@@ -2,7 +2,7 @@
 
 ## 站点定位
 
-本仓库是创驰最新消息的官方发布入口，线上域名为 `chuangchi.cc`，GitHub 仓库为 `junweiqin/chuangchi-news`。公司动态、官方公告、行业观点和重要进展在获得明确发布指令后，应在本网站同步更新。
+本仓库是创驰最新消息、事实纠偏、项目内容和询价归因的正式发布入口，线上域名为 `chuangchi.cc`，GitHub 仓库为 `junweiqin/chuangchi-news`。`njchuangchi.com` 是企业既有官网；两个站点角色不同，`chuangchi.cc` 不替代企业既有官网的工商主体核验口径。发布公司动态、公告、行业观点和重要进展前仍需获得明确发布指令。
 
 ## 新闻发布触发规则
 

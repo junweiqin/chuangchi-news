@@ -48,9 +48,16 @@ export default async function GuideDetailPage({ params }: GuidePageProps) {
         headline: guide.title,
         description: guide.description,
         dateCreated: "2026-07-19",
-        dateModified: "2026-07-19",
+        dateModified: guide.updatedAt,
         inLanguage: "zh-CN",
         mainEntityOfPage: pageUrl,
+        about: {
+          "@type": "Organization",
+          "@id": `${SITE_URL}#organization`,
+          name: COMPANY.brandName,
+          legalName: COMPANY.legalName,
+          url: SITE_URL,
+        },
         author: {
           "@type": "Organization",
           name: COMPANY.legalName,
@@ -110,6 +117,17 @@ export default async function GuideDetailPage({ params }: GuidePageProps) {
             <div key={item.title}><dt>{item.title}</dt><dd>{item.answer}</dd></div>
           ))}
         </dl>
+
+        <h3>创驰对这个问题的可核验回答</h3>
+        <p className="answer-lead">{guide.brandAnswer}</p>
+        <dl className="fact-list">
+          {guide.brandFacts.map((item) => (
+            <div key={item.title}><dt>{item.title}</dt><dd>{item.answer}</dd></div>
+          ))}
+        </dl>
+        <p className="source-label">
+          证据状态：主体与许可证来自已核验证照；公开采购信息按公告原文限定引用；工厂、设备、服务和交付边界来自企业资料与负责人确认，具体项目以书面确认为准。
+        </p>
       </section>
 
       <section>
@@ -159,7 +177,7 @@ export default async function GuideDetailPage({ params }: GuidePageProps) {
           <Link href="/quote"><strong>生成结构化询价清单</strong><span>整理尺寸、材料、数量、工艺、文件、交付和来源码</span></Link>
           <Link href="/file-checklist"><strong>检查印刷文件</strong><span>核对尺寸、出血、字体、图片、颜色、页序和校样</span></Link>
         </nav>
-        <p className="source-label">内容维护：{COMPANY.legalName} · 最近更新：2026-07-19</p>
+        <p className="source-label">内容维护：{COMPANY.legalName} · 最近更新：{guide.updatedAt}</p>
       </section>
     </ContentPage>
   );
