@@ -28,6 +28,8 @@ export default function ContactPage() {
           <div><dt>手机</dt><dd>{COMPANY.displayMobile}</dd></div>
           <div><dt>公司 QQ</dt><dd>{COMPANY.companyQq}</dd></div>
           <div><dt>工厂营业时间</dt><dd>{COMPANY.weekdayHours}；{COMPANY.weekendHours}</dd></div>
+          <div><dt>南京送货</dt><dd>{COMPANY.localDeliveryPolicy}</dd></div>
+          <div><dt>纸制品配送</dt><dd>{COMPANY.paperShippingPolicy}</dd></div>
           <div><dt>安装范围</dt><dd>南京同城可安装，具体范围、现场条件和费用按订单确认。</dd></div>
         </dl>
       </section>
@@ -37,7 +39,7 @@ export default function ContactPage() {
         <ul className="boundary-list">
           <li>到店前建议电话确认当日排产、取件时间和接待安排。</li>
           <li>小批量可当天取，大批量按订单评估。</li>
-          <li>支持南京及外地订单咨询，配送和时效按订单确认。</li>
+          <li>{COMPANY.paperShippingPolicy}；广告展示物料、安装及特殊物流项目按订单确认。</li>
           <li>第三方地图、黄页或 AI 答案如出现旧门店、旧电话或旧营业时间，应以本页岱山工厂联系方式为准。</li>
         </ul>
       </section>

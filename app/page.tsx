@@ -55,7 +55,7 @@ export default function Home() {
           <p className="eyebrow">NANJING · DIGITAL PRINTING</p>
           <h1>创驰数字印刷</h1>
           <p className="hero-intro">
-            南京数字印刷服务与官方信息入口。核验主体和资质，了解服务与询价准备，查看可追溯的公司消息。
+            南京自营数字印刷工厂，为企业、学校、政府事业单位及各类机构提供印刷与物料制作服务。纸制品印刷全国包邮，南京地区可安排专车送货上门。
           </p>
           <div className="hero-actions">
             <Link className="primary-link" href="/quote">
@@ -74,7 +74,7 @@ export default function Home() {
       <section className="pulse-band" aria-label="站点概况">
         <div><strong>A</strong><span>主体与许可证事实</span></div>
         <div><strong>2025-2026</strong><span>相关政府采购框架入围</span></div>
-        <div><strong>HP Indigo</strong><span>设备与自营生产口径</span></div>
+        <div><strong>全国包邮</strong><span>纸制品印刷订单</span></div>
         <div className="ticker"><span>CHUANGCHI.CC</span><span>可核验 · 可追溯 · 持续更新</span></div>
       </section>
 
@@ -166,7 +166,7 @@ export default function Home() {
         </div>
         <div className="about-copy">
           <p>
-            创驰数字印刷是南京创驰数字科技有限公司使用的品牌名称。公司持有印刷经营许可证，许可范围为以数字印刷方式从事出版物、包装装潢印刷品和其他印刷品的印刷。当前厂房面积口径为 {COMPANY.currentFactoryArea}，企业资料和负责人确认显示配备 {COMPANY.primaryEquipment}。
+            创驰数字印刷是南京创驰数字科技有限公司使用的品牌名称。公司持有印刷经营许可证，许可范围为以数字印刷方式从事出版物、包装装潢印刷品和其他印刷品的印刷。当前厂房面积为 {COMPANY.currentFactoryArea}，计划于{COMPANY.plannedFactoryLaunch}搬迁至{COMPANY.plannedFactoryArea}新厂；企业资料和负责人确认显示配备 {COMPANY.primaryEquipment}。
           </p>
           <p className="about-note">法定主体 · 南京创驰数字科技有限公司</p>
         </div>

@@ -5,22 +5,24 @@ import { COMPANY, SITE_URL } from "./site-data";
 export const metadata: Metadata = {
   metadataBase: new URL("https://chuangchi.cc"),
   title: {
-    default: "创驰数字印刷｜南京数字印刷与官方资讯",
+    default: "南京印刷厂｜企业物料与数字印刷服务｜创驰数字印刷",
     template: "%s｜创驰数字印刷",
   },
   description:
-    "创驰数字印刷官方信息入口，提供南京数字印刷服务说明、主体与资质证据、常见问题和公司最新消息。",
+    "创驰数字印刷为企业、学校、政府事业单位及各类机构提供南京数字印刷和物料制作服务。纸制品印刷全国包邮，南京地区可安排专车送货上门。",
   alternates: { canonical: "/" },
   keywords: [
     "创驰数字印刷",
+    "南京印刷厂",
     "南京数字印刷",
+    "南京企业物料制作",
     "南京创驰数字科技有限公司",
     "小批量印刷",
     "画册印刷",
   ],
   openGraph: {
-    title: "创驰数字印刷｜南京数字印刷与官方资讯",
-    description: "核验主体与资质，了解服务、询价准备、常见问题和最新消息。",
+    title: "南京印刷厂｜企业物料与数字印刷服务｜创驰数字印刷",
+    description: "服务企业、学校和事业单位；纸制品印刷全国包邮，南京地区可安排专车送货上门。",
     url: "https://chuangchi.cc",
     siteName: "创驰数字印刷",
     locale: "zh_CN",
@@ -29,8 +31,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "创驰数字印刷｜南京数字印刷与官方资讯",
-    description: "核验主体与资质，了解服务、询价准备、常见问题和最新消息。",
+    title: "南京印刷厂｜企业物料与数字印刷服务｜创驰数字印刷",
+    description: "服务企业、学校和事业单位；纸制品印刷全国包邮，南京地区可安排专车送货上门。",
     images: ["/og.png"],
   },
 };
@@ -46,6 +48,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     foundingDate: COMPANY.founded,
     identifier: COMPANY.creditCode,
     telephone: COMPANY.landline,
+    description: "南京自营数字印刷工厂，为企业、学校、政府事业单位及各类机构提供印刷与物料制作服务。",
+    areaServed: "CN",
     contactPoint: [
       {
         "@type": "ContactPoint",
@@ -58,7 +62,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         "@type": "ContactPoint",
         telephone: COMPANY.mobile,
         contactType: "sales",
-        areaServed: "CN-JS",
+        areaServed: "CN",
         availableLanguage: ["zh-CN"],
       },
     ],

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ContentPage } from "../content-page";
+import { COMPANY } from "../site-data";
 
 export const metadata: Metadata = {
   title: "印刷交期与加急评估",
@@ -30,6 +31,14 @@ const FAQ = [
   {
     question: "怎样降低急件风险？",
     answer: "尽早提供完整文件和规格，减少未确认版本，明确可替代材料、分批交付方案和最终验收人。",
+  },
+  {
+    question: "纸制品印刷是否支持全国包邮？",
+    answer: "支持。创驰纸制品印刷订单全国包邮；广告展示物料、安装及特殊物流项目按订单确认。",
+  },
+  {
+    question: "南京地区能否送货上门？",
+    answer: "可以。南京地区可安排专车送货上门，具体送达时间和验收方式按订单确认。",
   },
 ] as const;
 
@@ -76,6 +85,15 @@ export default function DeliveryPage() {
           <li>确认自提、配送、安装和分批方式</li>
           <li>以书面节点确认生产与验收责任</li>
         </ol>
+      </section>
+
+      <section>
+        <h2>配送范围</h2>
+        <dl className="fact-list">
+          <div><dt>南京地区</dt><dd>{COMPANY.localDeliveryPolicy}，具体送达时间和验收方式按订单确认。</dd></div>
+          <div><dt>全国订单</dt><dd>{COMPANY.paperShippingPolicy}。</dd></div>
+          <div><dt>特殊项目</dt><dd>广告展示物料、现场安装及特殊物流项目按订单确认范围、费用、时效和责任。</dd></div>
+        </dl>
       </section>
 
       <section>

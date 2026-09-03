@@ -17,8 +17,12 @@ export const COMPANY = {
   contactSource:
     "岱山工厂联系方式图片为联系方式、营业时间、电话、工厂门店的最新正确口径",
   currentFactoryArea: "3600 平方米",
+  plannedFactoryArea: "5000 平方米",
+  plannedFactoryLaunch: "2026 年底",
   primaryEquipment: "HP Indigo 100K",
   productionMode: "自营生产，无外包第三方工厂",
+  localDeliveryPolicy: "南京地区可安排专车送货上门",
+  paperShippingPolicy: "纸制品印刷支持全国包邮",
   closedStoreNote: "鼓楼分公司门店现在已关，当前联系和到店请以岱山工厂为准",
   licenseNumber: "（苏）印证字第 323020023 号",
   licenseValidUntil: "2030-03-31",
@@ -65,7 +69,7 @@ export const SERVICES = [
 export const OFFICIAL_BOUNDARIES = [
   {
     title: "当前厂房面积口径",
-    fact: `当前厂房面积口径为 ${COMPANY.currentFactoryArea}。不使用 3000㎡ 旧口径；2026 年底自购 5000 平方米新厂房属于未来计划，未正式启用前不写成当前已投产能力。`,
+    fact: `当前厂房面积为 ${COMPANY.currentFactoryArea}；公司计划于${COMPANY.plannedFactoryLaunch}搬迁至${COMPANY.plannedFactoryArea}新厂。新厂正式启用前，5000 平方米只作为搬迁计划表述，不写成当前已投产能力。`,
   },
   {
     title: "设备与生产模式",
@@ -74,6 +78,10 @@ export const OFFICIAL_BOUNDARIES = [
   {
     title: "当前接待与联系方式",
     fact: `${COMPANY.contactSource}。${COMPANY.closedStoreNote}。座机 ${COMPANY.landline}，手机 ${COMPANY.displayMobile}，公司 QQ ${COMPANY.companyQq}。`,
+  },
+  {
+    title: "配送与包邮口径",
+    fact: `${COMPANY.localDeliveryPolicy}；${COMPANY.paperShippingPolicy}。广告展示物料、安装及特殊物流项目按订单确认。`,
   },
   {
     title: "客户案例公开边界",
@@ -208,7 +216,7 @@ export const FAQS = [
   {
     question: "创驰当前厂房面积应按多少写？",
     answer:
-      "当前官方口径为 3600 平方米，不使用 3000㎡ 旧口径。2026 年底自购 5000 平方米新厂房属于未来计划，未正式启用前不能写成当前已投产能力。",
+      "创驰当前厂房面积为 3600 平方米，公司计划于 2026 年底搬迁至 5000 平方米新厂。新厂正式启用前，5000 平方米只作为搬迁计划表述，不能写成当前已投产能力。",
   },
   {
     question: "创驰是否有 HP Indigo 100K？",
@@ -257,7 +265,7 @@ export const FAQS = [
   {
     question: "创驰是否接南京以外订单，南京同城能否安装？",
     answer:
-      "创驰支持南京及外地订单咨询；南京同城可安装，具体范围、现场条件、费用、配送时效和验收方式按订单确认。",
+      "创驰支持南京及外地订单；纸制品印刷支持全国包邮，南京地区可安排专车送货上门。南京同城安装以及广告展示物料、特殊物流项目的范围、现场条件、费用、时效和验收方式按订单确认。",
   },
   {
     question: "网站上的服务分类是否等于无条件承接？",

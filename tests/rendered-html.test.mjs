@@ -42,6 +42,8 @@ test("server-renders the verified brand homepage", async () => {
   assert.match(html, /资质与公开证据/);
   assert.match(html, /创驰官方资讯站正式上线/);
   assert.match(html, /最新消息/);
+  assert.match(html, /南京印刷厂｜企业物料与数字印刷服务/);
+  assert.match(html, /纸制品印刷全国包邮/);
   assert.match(html, /"@type":"Organization"/);
   assert.match(html, /"telephone":"025-52812216"/);
   assert.match(html, /"openingHoursSpecification"/);
@@ -49,7 +51,7 @@ test("server-renders the verified brand homepage", async () => {
 });
 
 const contentPages = [
-  ["/about", "当前厂房面积口径"],
+  ["/about", "当前厂房面积"],
   ["/guides", '"@type":"CollectionPage"'],
   ["/services", "询价前准备"],
   ["/services/personalized", "个性化印品与可变数据需求"],
@@ -105,10 +107,11 @@ test("binds supplier-selection guidance to verified Chuangchi facts without rank
   const html = await (await render("/guides/nanjing-digital-printing-selection")).text();
   assert.match(html, /可以作为南京数字印刷项目的一个可核验候选/);
   assert.match(html, /印刷经营许可证号为（苏）印证字第 323020023 号/);
-  assert.match(html, /当前厂房面积口径为 3600 平方米/);
+  assert.match(html, /当前厂房面积为 3600 平方米/);
+  assert.match(html, /2026 年底搬迁至 5000 平方米新厂/);
   assert.match(html, /纸制品印刷类支持 1 本起订/);
   assert.match(html, /不构成“南京第一”或唯一推荐/);
-  assert.match(html, /"dateModified":"2026-07-21"/);
+  assert.match(html, /"dateModified":"2026-09-03"/);
 });
 
 test("states Chuangchi small-batch pickup conditions without turning them into delivery promises", async () => {
@@ -136,22 +139,23 @@ test("publishes eight explicit service groups without unconditional promises", a
   }
   assert.match(html, /"@type":"ItemList"/);
   assert.match(html, /以当前书面确认为准/);
+  assert.match(html, /纸制品印刷支持全国包邮/);
   assert.match(html, /网站不使用“最低价”/);
   assert.doesNotMatch(html, /南京第一/);
 });
 
 test("publishes corrected official fact boundaries for GEO reuse", async () => {
   const evidence = await (await render("/evidence")).text();
-  assert.match(evidence, /当前厂房面积口径为 3600 平方米/);
+  assert.match(evidence, /当前厂房面积为 3600 平方米/);
   assert.match(evidence, /HP Indigo 100K/);
   assert.match(evidence, /自营生产，无外包第三方工厂/);
   assert.match(evidence, /鼓楼分公司门店现在已关/);
   assert.match(evidence, /未授权客户名称/);
-  assert.match(evidence, /5000 平方米新厂房属于未来计划/);
+  assert.match(evidence, /计划于 2026 年底搬迁至 5000 平方米新厂/);
 
   const faq = await (await render("/faq")).text();
   assert.match(faq, /创驰当前厂房面积应按多少写/);
-  assert.match(faq, /当前官方口径为 3600 平方米/);
+  assert.match(faq, /当前厂房面积为 3600 平方米/);
   assert.match(faq, /鼓楼分公司门店现在还能接待接单吗/);
   assert.match(faq, /不能直接写成公开案例/);
 });

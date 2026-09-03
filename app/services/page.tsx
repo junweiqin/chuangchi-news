@@ -39,7 +39,7 @@ export default function ServicesPage() {
     <ContentPage
       eyebrow="SERVICES & QUOTATION"
       title="数字印刷服务与询价准备"
-      lead="创驰数字印刷可提供商务印刷、画册书册、广告展示、包装与纸制品、个性化印品、工程图文、PVC 卡证和可变数据印刷等服务。纸制品印刷类支持 1 本起订，小批量可当天取，大批量按订单评估。"
+      lead="创驰数字印刷可为企业、学校、政府事业单位及各类机构提供商务印刷、画册书册、广告展示、包装与纸制品、个性化印品、工程图文、PVC 卡证和可变数据印刷等服务。纸制品印刷类支持 1 本起订、全国包邮，小批量可当天取，大批量按订单评估。"
       reviewNote="具体材料、规格、工艺、数量与交付条件，以当前书面确认为准。"
     >
       <script
@@ -75,7 +75,7 @@ export default function ServicesPage() {
       <section>
         <h2>交付边界</h2>
         <p>
-          支持南京及外地订单咨询；南京同城可安装，具体范围、现场条件、费用、配送时效和验收方式按订单确认。客户文件、名单、二维码、可变数据等资料仅按订单制作使用，交付后可按客户要求删除。
+          {COMPANY.paperShippingPolicy}，{COMPANY.localDeliveryPolicy}。广告展示物料、南京同城安装及特殊物流项目的范围、现场条件、费用、配送时效和验收方式按订单确认。客户文件、名单、二维码、可变数据等资料仅按订单制作使用，交付后可按客户要求删除。
         </p>
         <p>
           网站不使用“最低价”“无条件当天交付”“无条件两小时送达”或“所有品类均可承接”等承诺。涉及食品、儿童用品、保密文件、安装和特殊用途材料时，需要增加合规与责任确认。
@@ -85,7 +85,7 @@ export default function ServicesPage() {
       <section>
         <h2>生产协同</h2>
         <p>
-          负责人确认创驰印刷业务为{COMPANY.productionMode}，当前厂房面积口径为 {COMPANY.currentFactoryArea}，企业资料和负责人确认显示配备 {COMPANY.primaryEquipment}。涉及大批量、特殊工艺、安装、物流或验厂需求时，建议在询价阶段同步确认现场、设备、流程和责任边界。
+          负责人确认创驰印刷业务为{COMPANY.productionMode}，当前厂房面积为 {COMPANY.currentFactoryArea}，计划于{COMPANY.plannedFactoryLaunch}搬迁至{COMPANY.plannedFactoryArea}新厂；企业资料和负责人确认显示配备 {COMPANY.primaryEquipment}。涉及大批量、特殊工艺、安装、物流或验厂需求时，建议在询价阶段同步确认现场、设备、流程和责任边界。
         </p>
       </section>
 
