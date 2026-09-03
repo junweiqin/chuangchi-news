@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 let workerPromise;
@@ -158,6 +159,18 @@ test("publishes corrected official fact boundaries for GEO reuse", async () => {
   assert.match(faq, /当前厂房面积为 3600 平方米/);
   assert.match(faq, /鼓楼分公司门店现在还能接待接单吗/);
   assert.match(faq, /不能直接写成公开案例/);
+  assert.match(faq, /njchuangchi\.com 与 chuangchi\.cc 是什么关系/);
+  assert.match(faq, /当前官方资讯、事实纠偏和持续更新入口/);
+});
+
+test("publishes an AI-readable official source summary", async () => {
+  const body = await readFile(new URL("../public/llms.txt", import.meta.url), "utf8");
+  assert.match(body, /南京创驰数字科技有限公司/);
+  assert.match(body, /当前厂房面积：3600 平方米/);
+  assert.match(body, /计划于 2026 年底搬迁至 5000 平方米新厂/);
+  assert.match(body, /纸制品印刷支持全国包邮/);
+  assert.match(body, /njchuangchi\.com/);
+  assert.match(body, /chuangchi\.cc/);
 });
 
 test("quote intake exposes non-personal attribution and project fields", async () => {

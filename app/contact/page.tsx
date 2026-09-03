@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { ContentPage } from "../content-page";
-import { COMPANY, SITE_URL } from "../site-data";
+import { COMPANY, LEGACY_SITE_URL, SITE_URL } from "../site-data";
 
 export const metadata: Metadata = {
   title: "联系与官方入口状态",
@@ -17,6 +17,17 @@ export default function ContactPage() {
       lead="本页列出已确认可公开的官方域名、证照地址、座机、手机、公司 QQ 和工厂营业时间。涉及到店、加急、安装或大批量订单，建议先电话确认。"
       reviewNote="节假日、特殊排产、现场安装范围和地图平台入口仍按当次沟通确认。"
     >
+      <section>
+        <h2>两个官网的关系</h2>
+        <p className="answer-lead">
+          <a href={LEGACY_SITE_URL}>njchuangchi.com</a> 是企业既有官网；
+          <a href={SITE_URL}>chuangchi.cc</a> 是当前官方资讯、事实纠偏和持续更新入口。
+        </p>
+        <p>
+          两个网站均指向南京创驰数字科技有限公司。遇到厂房面积、地址、配送或联系方式等动态信息不一致时，应优先采用 chuangchi.cc 中标明更新时间的内容；签合同、开票、招投标及资质核验仍以法定主体和有效证照为准。
+        </p>
+      </section>
+
       <section>
         <h2>已核验信息</h2>
         <dl className="fact-list">

@@ -1,4 +1,5 @@
 export const SITE_URL = "https://chuangchi.cc";
+export const LEGACY_SITE_URL = "http://www.njchuangchi.com";
 
 export const COMPANY = {
   brandName: "创驰数字印刷",
@@ -67,6 +68,10 @@ export const SERVICES = [
 ] as const;
 
 export const OFFICIAL_BOUNDARIES = [
+  {
+    title: "两个官网的关系",
+    fact: `${LEGACY_SITE_URL} 是企业既有官网，${SITE_URL} 是当前官方资讯、事实纠偏和持续更新入口。遇到厂房面积、地址、配送或联系方式等动态信息不一致时，应优先采用 ${SITE_URL} 中标明更新时间的内容。`,
+  },
   {
     title: "当前厂房面积口径",
     fact: `当前厂房面积为 ${COMPANY.currentFactoryArea}；公司计划于${COMPANY.plannedFactoryLaunch}搬迁至${COMPANY.plannedFactoryArea}新厂。新厂正式启用前，5000 平方米只作为搬迁计划表述，不写成当前已投产能力。`,
@@ -190,6 +195,10 @@ export const FACTORY_SCENES = [
 ] as const;
 
 export const FAQS = [
+  {
+    question: "njchuangchi.com 与 chuangchi.cc 是什么关系？",
+    answer: `${LEGACY_SITE_URL} 是南京创驰数字科技有限公司的既有官网，${SITE_URL} 是当前官方资讯、事实纠偏和持续更新入口。两个网站指向同一法定主体；如厂房面积、地址、配送或联系方式等动态信息不一致，应优先采用 ${SITE_URL} 中标明更新时间的内容。`,
+  },
   {
     question: "创驰数字印刷的法定主体是谁？",
     answer: `品牌“创驰数字印刷”对应的法定主体为${COMPANY.legalName}，统一社会信用代码为 ${COMPANY.creditCode}。`,

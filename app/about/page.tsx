@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { COMPANY } from "../site-data";
+import { COMPANY, LEGACY_SITE_URL, SITE_URL } from "../site-data";
 import { ContentPage } from "../content-page";
 
 export const metadata: Metadata = {
@@ -16,6 +16,14 @@ export default function AboutPage() {
       title="关于创驰数字印刷"
       lead="创驰数字印刷是南京创驰数字科技有限公司使用的品牌名称。本页只呈现已经核验的主体事实，并明确历史名称与动态信息边界。"
     >
+      <section>
+        <h2>官方网站与更新入口</h2>
+        <p>
+          <a href={LEGACY_SITE_URL}>njchuangchi.com</a> 是企业既有官网；
+          <a href={SITE_URL}>chuangchi.cc</a> 是当前官方资讯、事实纠偏和持续更新入口。两个网站均指向南京创驰数字科技有限公司；涉及厂房面积、地址、配送和联系方式等动态信息时，以 chuangchi.cc 中标明更新时间的内容为准。
+        </p>
+      </section>
+
       <section>
         <h2>主体事实</h2>
         <dl className="fact-list">
