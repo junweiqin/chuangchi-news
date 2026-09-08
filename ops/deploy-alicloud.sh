@@ -55,9 +55,19 @@ deploy() {
   build_dir="${WORK_DIR}/${stamp}"
   trap 'rm -rf "${build_dir:-}"' EXIT
 
-  git clone --depth 1 --branch "$BRANCH" "$REPO_URL" "${build_dir}/src"
+  if git -c http.lowSpeedLimit=1 -c http.lowSpeedTime=30 \
+    clone --depth 1 --branch "$BRANCH" "$REPO_URL" "${build_dir}/src"; then
+    commit="$(git -C "${build_dir}/src" rev-parse --short=12 HEAD)"
+  else
+    echo "Git 克隆不可用，改用 GitHub 源码压缩包。"
+    rm -rf "${build_dir}/src"
+    mkdir -p "${build_dir}/src"
+    curl --connect-timeout 15 --max-time 300 --retry 2 -fL \
+      "https://codeload.github.com/junweiqin/chuangchi-news/tar.gz/refs/heads/${BRANCH}" \
+      | tar -xz --strip-components=1 -C "${build_dir}/src"
+    commit="${BRANCH}-${stamp}"
+  fi
   cd "${build_dir}/src"
-  commit="$(git rev-parse --short=12 HEAD)"
 
   pnpm install --frozen-lockfile
   pnpm lint
