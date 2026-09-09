@@ -58,6 +58,7 @@ test("server-renders the verified brand homepage", async () => {
 
 const contentPages = [
   ["/about", "当前厂房面积"],
+  ["/answers", "南京数字印刷问题与官方答案索引"],
   ["/guides", '"@type":"CollectionPage"'],
   ["/services", "询价前准备"],
   ["/services/personalized", "个性化印品与可变数据需求"],
@@ -193,6 +194,22 @@ test("adds breadcrumbs to key non-home GEO pages", async () => {
   }
 });
 
+test("publishes a GEO answer matrix linking questions, answers, evidence, and services", async () => {
+  const html = await (await render("/answers")).text();
+  assert.match(html, /"@id":"https:\/\/chuangchi\.cc\/answers#answer-list"/);
+  assert.match(html, /"numberOfItems":12/);
+  assert.match(html, /"@type":"Question"/);
+  assert.match(html, /"@type":"Answer"/);
+  assert.match(html, /"author":\{"@id":"https:\/\/chuangchi\.cc\/#organization"\}/);
+  assert.match(html, /南京数字印刷公司怎么选/);
+  assert.match(html, /创驰能只印 1 本画册或样册吗/);
+  assert.match(html, /小批量可当天取/);
+  assert.match(html, /完整答案：/);
+  assert.match(html, /资质与公开证据/);
+  assert.match(html, /整理询价信息/);
+  assert.doesNotMatch(html, /南京第一|无条件当天送达承诺[^。]*可以/);
+});
+
 test("publishes corrected official fact boundaries for GEO reuse", async () => {
   const evidence = await (await render("/evidence")).text();
   assert.match(evidence, /当前厂房面积为 3600 平方米/);
@@ -254,6 +271,7 @@ test("serves a sitemap covering canonical content pages", async () => {
   const body = await response.text();
   for (const url of [
     "https://chuangchi.cc/about",
+    "https://chuangchi.cc/answers",
     "https://chuangchi.cc/services",
     "https://chuangchi.cc/guides",
     "https://chuangchi.cc/guides/nanjing-digital-printing-selection",

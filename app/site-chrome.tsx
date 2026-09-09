@@ -16,6 +16,7 @@ export function SiteHeader() {
       </Link>
       <nav aria-label="主导航">
         <Link href="/services">服务</Link>
+        <Link href="/answers">答案索引</Link>
         <Link href="/guides">指南</Link>
         <Link href="/quote">询价准备</Link>
         <Link href="/evidence">资质证据</Link>
@@ -39,6 +40,7 @@ export function SiteFooter() {
       </div>
       <p>© 2026 南京创驰数字科技有限公司</p>
       <nav aria-label="页脚导航">
+        <Link href="/answers">官方答案</Link>
         <Link href="/guides">决策指南</Link>
         <Link href="/quote">询价准备</Link>
         <Link href="/evidence">核验信息</Link>

@@ -115,6 +115,7 @@ export default function Home() {
           <Link href="/factory"><span>04</span><strong>工厂实景与设备照片</strong><small>岱山工厂、设备、仓储现场和使用边界</small><i aria-hidden="true">→</i></Link>
           <Link href="/faq"><span>05</span><strong>南京数字印刷 FAQ</strong><small>短答案、适用条件、风险提示</small><i aria-hidden="true">→</i></Link>
           <Link href="/guides"><span>06</span><strong>场景决策指南</strong><small>服务商选择、画册、小批量、包装、展示与工程图文</small><i aria-hidden="true">→</i></Link>
+          <Link href="/answers"><span>07</span><strong>官方答案索引</strong><small>问题、标准答案、证据与服务页面对应关系</small><i aria-hidden="true">→</i></Link>
         </nav>
       </section>
 
