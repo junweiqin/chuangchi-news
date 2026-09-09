@@ -16,6 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/answers",
     "/guides",
     "/services",
+    "/sources",
     "/services/personalized",
     "/quote",
     "/file-checklist",

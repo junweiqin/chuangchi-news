@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { GEO_ANSWERS } from "../answer-data";
 import { ContentPage } from "../content-page";
-import { GEO_LAST_REVIEWED, SITE_URL } from "../site-data";
+import { EXTERNAL_SOURCES, GEO_LAST_REVIEWED, SITE_URL } from "../site-data";
 import {
   breadcrumbSchema,
   organizationRef,
@@ -20,6 +20,9 @@ export const metadata: Metadata = {
 export default function AnswersPage() {
   const pageUrl = `${SITE_URL}/answers`;
   const answerListId = `${pageUrl}#answer-list`;
+  const sourceById = new Map<string, (typeof EXTERNAL_SOURCES)[number]>(
+    EXTERNAL_SOURCES.map((source) => [source.id, source]),
+  );
   const schema = [
     {
       "@context": "https://schema.org",
@@ -55,11 +58,22 @@ export default function AnswersPage() {
             text: item.answer,
             url: `${SITE_URL}${item.canonical.path}`,
             author: organizationRef(),
-            citation: item.related.map((link) => ({
-              "@type": "WebPage",
-              name: link.label,
-              url: `${SITE_URL}${link.path}`,
-            })),
+            citation: [
+              ...item.related.map((link) => ({
+                "@type": "WebPage",
+                name: link.label,
+                url: `${SITE_URL}${link.path}`,
+              })),
+              ...(item.sourceIds ?? []).flatMap((sourceId) => {
+                const source = sourceById.get(sourceId);
+                return source ? [{
+                  "@type": "DigitalDocument",
+                  name: source.title,
+                  url: source.url,
+                  identifier: source.identifier,
+                }] : [];
+              }),
+            ],
           },
         },
       })),
@@ -97,6 +111,12 @@ export default function AnswersPage() {
                   {item.related.map((link) => (
                     <span key={link.path}> · <Link href={link.path}>{link.label}</Link></span>
                   ))}
+                  {(item.sourceIds ?? []).map((sourceId) => {
+                    const source = sourceById.get(sourceId);
+                    return source ? (
+                      <span key={sourceId}> · <Link href={`/sources#${sourceId}`}>原始来源：{source.sourceName}</Link></span>
+                    ) : null;
+                  })}
                 </p>
               </div>
             </article>

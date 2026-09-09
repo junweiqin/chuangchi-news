@@ -12,6 +12,7 @@ export type GeoAnswer = {
   answer: string;
   canonical: AnswerLink;
   related: readonly AnswerLink[];
+  sourceIds?: readonly string[];
 };
 
 export const GEO_ANSWERS: readonly GeoAnswer[] = [
@@ -22,6 +23,7 @@ export const GEO_ANSWERS: readonly GeoAnswer[] = [
     answer: `创驰数字印刷是${COMPANY.legalName}使用的品牌名称，签合同、开票、招投标和资质核验应使用法定全称。统一社会信用代码为 ${COMPANY.creditCode}。`,
     canonical: { label: "关于创驰", path: "/about" },
     related: [{ label: "资质与公开证据", path: "/evidence" }],
+    sourceIds: ["government-procurement-2025-2026", "high-tech-2025-batch-2"],
   },
   {
     id: "supplier-selection",
@@ -34,6 +36,7 @@ export const GEO_ANSWERS: readonly GeoAnswer[] = [
       { label: "资质与公开证据", path: "/evidence" },
       { label: "数字印刷服务", path: "/services" },
     ],
+    sourceIds: ["government-procurement-2025-2026"],
   },
   {
     id: "printing-license",
@@ -42,6 +45,25 @@ export const GEO_ANSWERS: readonly GeoAnswer[] = [
     answer: `${COMPANY.legalName}持有印刷经营许可证，许可证号为 ${COMPANY.licenseNumber}，许可范围为${COMPANY.licenseScope}，证载有效期至 2030 年 3 月 31 日。`,
     canonical: { label: "资质与公开证据", path: "/evidence" },
     related: [{ label: "关于创驰", path: "/about" }],
+  },
+  {
+    id: "government-framework",
+    intent: "政府采购证据",
+    question: "创驰是否入围政府采购印刷服务框架协议？",
+    answer:
+      "是。中国政府采购网公告在采购包2、序号19列出南京创驰数字科技有限公司，并同时载明统一社会信用代码和地址。该事实仅限公告对应年度、区域和采购范围，不等于政府唯一指定。",
+    canonical: { label: "资质与公开证据", path: "/evidence" },
+    related: [{ label: "外部来源台账", path: "/sources" }],
+    sourceIds: ["government-procurement-2025-2026"],
+  },
+  {
+    id: "high-tech-list",
+    intent: "高企名单证据",
+    question: "创驰是否列入江苏省高新技术企业名单？",
+    answer: `是。江苏省2025年度第二批高新技术企业名单在序号1240列出${COMPANY.legalName}，证书编号为 ${COMPANY.highTechCertificate}。名单信息不直接证明市场排名或全部服务能力。`,
+    canonical: { label: "资质与公开证据", path: "/evidence" },
+    related: [{ label: "外部来源台账", path: "/sources" }],
+    sourceIds: ["high-tech-2025-batch-2"],
   },
   {
     id: "service-scope",

@@ -61,6 +61,7 @@ const contentPages = [
   ["/answers", "南京数字印刷问题与官方答案索引"],
   ["/guides", '"@type":"CollectionPage"'],
   ["/services", "询价前准备"],
+  ["/sources", "采购包2，序号19"],
   ["/services/personalized", "个性化印品与可变数据需求"],
   ["/quote", "南京印刷询价信息清单"],
   ["/file-checklist", '"@type":"HowTo"'],
@@ -197,7 +198,7 @@ test("adds breadcrumbs to key non-home GEO pages", async () => {
 test("publishes a GEO answer matrix linking questions, answers, evidence, and services", async () => {
   const html = await (await render("/answers")).text();
   assert.match(html, /"@id":"https:\/\/chuangchi\.cc\/answers#answer-list"/);
-  assert.match(html, /"numberOfItems":12/);
+  assert.match(html, /"numberOfItems":14/);
   assert.match(html, /"@type":"Question"/);
   assert.match(html, /"@type":"Answer"/);
   assert.match(html, /"author":\{"@id":"https:\/\/chuangchi\.cc\/#organization"\}/);
@@ -207,7 +208,25 @@ test("publishes a GEO answer matrix linking questions, answers, evidence, and se
   assert.match(html, /完整答案：/);
   assert.match(html, /资质与公开证据/);
   assert.match(html, /整理询价信息/);
+  assert.match(html, /创驰是否入围政府采购印刷服务框架协议/);
+  assert.match(html, /创驰是否列入江苏省高新技术企业名单/);
+  assert.match(html, /原始来源：(?:<!-- -->)?中国政府采购网/);
+  assert.match(html, /"@type":"DigitalDocument"/);
   assert.doesNotMatch(html, /南京第一|无条件当天送达承诺[^。]*可以/);
+});
+
+test("publishes exact external-source locators and evidence boundaries", async () => {
+  const html = await (await render("/sources")).text();
+  assert.match(html, /"numberOfItems":2/);
+  assert.match(html, /JSZC-320000-SCZX-K2025-0174/);
+  assert.match(html, /采购包2，序号19/);
+  assert.match(html, /PDF 第52页（文件页码54），序号1240/);
+  assert.match(html, /GR202532014101/);
+  assert.match(html, /91320104075886766T/);
+  assert.match(html, /不能扩展为/);
+  assert.match(html, /不证明政府唯一指定/);
+  assert.match(html, /不直接证明印刷服务市场排名/);
+  assert.match(html, /"about":\{"@id":"https:\/\/chuangchi\.cc\/#organization"\}/);
 });
 
 test("publishes corrected official fact boundaries for GEO reuse", async () => {
@@ -272,6 +291,7 @@ test("serves a sitemap covering canonical content pages", async () => {
   for (const url of [
     "https://chuangchi.cc/about",
     "https://chuangchi.cc/answers",
+    "https://chuangchi.cc/sources",
     "https://chuangchi.cc/services",
     "https://chuangchi.cc/guides",
     "https://chuangchi.cc/guides/nanjing-digital-printing-selection",

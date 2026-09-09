@@ -128,6 +128,45 @@ export const EVIDENCE = [
   },
 ] as const;
 
+export const EXTERNAL_SOURCES = [
+  {
+    id: "government-procurement-2025-2026",
+    title: "2025-2026年度江苏省省级、南京市市级、区级、江北新区印刷服务框架协议采购入围公告",
+    sourceName: "中国政府采购网",
+    issuingOrganization: "江苏省政府采购中心",
+    url: "https://www.ccgp.gov.cn/cggg/dfgg/zbgg/202506/t20250627_24857257.htm",
+    documentDate: "2025-06-27",
+    documentDateLabel: "公告时间",
+    schemaDateProperty: "datePublished",
+    identifier: "JSZC-320000-SCZX-K2025-0174",
+    locator: "采购包2，序号19",
+    matchedIdentity: `${COMPANY.legalName}；统一社会信用代码 ${COMPANY.creditCode}；地址南京市雨花台区岱山南路16号`,
+    supports:
+      "证明南京创驰数字科技有限公司入围该公告对应年度、区域和采购范围的印刷服务框架协议采购。",
+    limitation:
+      "不证明政府唯一指定、永久定点、市场排名、全部订单已经成交或所有印刷品均无条件承接。",
+    verifiedAt: GEO_LAST_REVIEWED,
+  },
+  {
+    id: "high-tech-2025-batch-2",
+    title: "江苏省2025年度第二批高新技术企业名单",
+    sourceName: "江苏省公开名单 PDF",
+    issuingOrganization: "名单文件",
+    url: "https://file.smejs.cn/file/group1/M00/01/8C/rBIAAWlwQPmAAiCcACRVF26Dh9o055.pdf",
+    documentDate: "2025-12-19",
+    documentDateLabel: "发证日期",
+    schemaDateProperty: "dateCreated",
+    identifier: COMPANY.highTechCertificate,
+    locator: "PDF 第52页（文件页码54），序号1240",
+    matchedIdentity: `${COMPANY.legalName}；证书编号 ${COMPANY.highTechCertificate}；地区南京`,
+    supports:
+      "证明南京创驰数字科技有限公司列入江苏省2025年度第二批高新技术企业名单，并对应所列证书编号。",
+    limitation:
+      "不直接证明印刷服务市场排名、设备数量、最低价格、全部产品能力或项目交付效果。",
+    verifiedAt: GEO_LAST_REVIEWED,
+  },
+] as const;
+
 export const FACTORY_SCENES = [
   {
     src: "/factory/image-000.png",
