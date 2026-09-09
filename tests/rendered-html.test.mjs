@@ -45,7 +45,12 @@ test("server-renders the verified brand homepage", async () => {
   assert.match(html, /最新消息/);
   assert.match(html, /南京印刷厂｜企业物料与数字印刷服务/);
   assert.match(html, /纸制品印刷全国包邮/);
-  assert.match(html, /"@type":"Organization"/);
+  assert.match(html, /"@type":\["Organization","LocalBusiness"\]/);
+  assert.match(html, /"@id":"https:\/\/chuangchi\.cc\/#organization"/);
+  assert.match(html, /"@type":"OfferCatalog"/);
+  assert.match(html, /"@type":"Service"/);
+  assert.match(html, /"name":"企业商务印刷"/);
+  assert.match(html, /"publisher":\{"@id":"https:\/\/chuangchi\.cc\/#organization"\}/);
   assert.match(html, /"telephone":"025-52812216"/);
   assert.match(html, /"openingHoursSpecification"/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape/i);

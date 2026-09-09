@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { COMPANY, SITE_URL } from "./site-data";
+import { COMPANY, SERVICES, SITE_URL } from "./site-data";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://chuangchi.cc"),
@@ -40,11 +40,14 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const organizationSchema = {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": ["Organization", "LocalBusiness"],
+    "@id": `${SITE_URL}/#organization`,
     name: COMPANY.brandName,
+    alternateName: COMPANY.shortName,
     legalName: COMPANY.legalName,
     url: SITE_URL,
     logo: `${SITE_URL}/chuangchi-logo.png`,
+    image: `${SITE_URL}/og.png`,
     foundingDate: COMPANY.founded,
     identifier: COMPANY.creditCode,
     telephone: COMPANY.landline,
@@ -87,14 +90,30 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       addressRegion: "江苏省",
       addressCountry: "CN",
     },
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "创驰数字印刷服务范围",
+      itemListElement: SERVICES.map((service) => ({
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: service.name,
+          description: service.examples,
+          provider: { "@id": `${SITE_URL}/#organization` },
+          areaServed: "CN",
+        },
+      })),
+    },
     sameAs: ["http://njchuangchi.com/"],
   };
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": `${SITE_URL}/#website`,
     name: "创驰数字印刷",
     url: SITE_URL,
-    publisher: { "@type": "Organization", name: COMPANY.legalName },
+    publisher: { "@id": `${SITE_URL}/#organization` },
+    about: { "@id": `${SITE_URL}/#organization` },
     inLanguage: "zh-CN",
   };
 
