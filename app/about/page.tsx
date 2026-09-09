@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
-import { COMPANY, LEGACY_SITE_URL, SITE_URL } from "../site-data";
+import { COMPANY, GEO_LAST_REVIEWED, LEGACY_SITE_URL, SITE_URL } from "../site-data";
 import { ContentPage } from "../content-page";
+import {
+  breadcrumbSchema,
+  organizationRef,
+  StructuredData,
+  websiteRef,
+} from "../structured-data";
 
 export const metadata: Metadata = {
   title: "关于创驰数字印刷",
@@ -10,12 +16,37 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
+  const pageUrl = `${SITE_URL}/about`;
+  const pageSchema = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "@id": `${pageUrl}#webpage`,
+    url: pageUrl,
+    name: "关于创驰数字印刷",
+    description: metadata.description,
+    isPartOf: websiteRef(),
+    about: organizationRef(),
+    mainEntity: organizationRef(),
+    breadcrumb: { "@id": `${pageUrl}#breadcrumb` },
+    dateModified: GEO_LAST_REVIEWED,
+    inLanguage: "zh-CN",
+  };
+
   return (
     <ContentPage
       eyebrow="ABOUT CHUANGCHI"
       title="关于创驰数字印刷"
       lead="创驰数字印刷是南京创驰数字科技有限公司使用的品牌名称。本页只呈现已经核验的主体事实，并明确历史名称与动态信息边界。"
     >
+      <StructuredData
+        data={[
+          pageSchema,
+          breadcrumbSchema(pageUrl, [
+            { name: "首页", path: "" },
+            { name: "关于创驰数字印刷", path: "/about" },
+          ]),
+        ]}
+      />
       <section>
         <h2>官方网站与更新入口</h2>
         <p>

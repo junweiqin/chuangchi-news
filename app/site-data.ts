@@ -1,5 +1,6 @@
 export const SITE_URL = "https://chuangchi.cc";
 export const LEGACY_SITE_URL = "http://www.njchuangchi.com";
+export const GEO_LAST_REVIEWED = "2026-09-09";
 
 export const COMPANY = {
   brandName: "创驰数字印刷",

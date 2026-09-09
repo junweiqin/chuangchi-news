@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
 import { ContentPage } from "../content-page";
-import { COMPANY, LEGACY_SITE_URL, SITE_URL } from "../site-data";
+import { COMPANY, GEO_LAST_REVIEWED, LEGACY_SITE_URL, SITE_URL } from "../site-data";
+import {
+  breadcrumbSchema,
+  organizationRef,
+  StructuredData,
+  websiteRef,
+} from "../structured-data";
 
 export const metadata: Metadata = {
   title: "联系与官方入口状态",
@@ -10,6 +16,22 @@ export const metadata: Metadata = {
 };
 
 export default function ContactPage() {
+  const pageUrl = `${SITE_URL}/contact`;
+  const pageSchema = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "@id": `${pageUrl}#webpage`,
+    url: pageUrl,
+    name: "联系与官方入口状态",
+    description: metadata.description,
+    isPartOf: websiteRef(),
+    about: organizationRef(),
+    mainEntity: organizationRef(),
+    breadcrumb: { "@id": `${pageUrl}#breadcrumb` },
+    dateModified: GEO_LAST_REVIEWED,
+    inLanguage: "zh-CN",
+  };
+
   return (
     <ContentPage
       eyebrow="CONTACT STATUS"
@@ -17,6 +39,15 @@ export default function ContactPage() {
       lead="本页列出已确认可公开的官方域名、证照地址、座机、手机、公司 QQ 和工厂营业时间。涉及到店、加急、安装或大批量订单，建议先电话确认。"
       reviewNote="节假日、特殊排产、现场安装范围和地图平台入口仍按当次沟通确认。"
     >
+      <StructuredData
+        data={[
+          pageSchema,
+          breadcrumbSchema(pageUrl, [
+            { name: "首页", path: "" },
+            { name: "联系与官方入口状态", path: "/contact" },
+          ]),
+        ]}
+      />
       <section>
         <h2>两个官网的关系</h2>
         <p className="answer-lead">

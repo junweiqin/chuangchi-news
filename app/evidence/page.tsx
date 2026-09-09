@@ -1,6 +1,18 @@
 import type { Metadata } from "next";
 import { ContentPage } from "../content-page";
-import { COMPANY, EVIDENCE, OFFICIAL_BOUNDARIES } from "../site-data";
+import {
+  COMPANY,
+  EVIDENCE,
+  GEO_LAST_REVIEWED,
+  OFFICIAL_BOUNDARIES,
+  SITE_URL,
+} from "../site-data";
+import {
+  breadcrumbSchema,
+  organizationRef,
+  StructuredData,
+  websiteRef,
+} from "../structured-data";
 
 export const metadata: Metadata = {
   title: "资质与公开证据",
@@ -10,12 +22,61 @@ export const metadata: Metadata = {
 };
 
 export default function EvidencePage() {
+  const pageUrl = `${SITE_URL}/evidence`;
+  const evidenceListId = `${pageUrl}#evidence-list`;
+  const pageSchema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": `${pageUrl}#webpage`,
+    url: pageUrl,
+    name: "创驰数字印刷资质与公开证据",
+    description: metadata.description,
+    isPartOf: websiteRef(),
+    about: organizationRef(),
+    mainEntity: { "@id": evidenceListId },
+    citation: EVIDENCE.filter((item) => item.href).map((item) => ({
+      "@type": "CreativeWork",
+      name: item.sourceLabel,
+      url: item.href,
+    })),
+    breadcrumb: { "@id": `${pageUrl}#breadcrumb` },
+    dateModified: GEO_LAST_REVIEWED,
+    inLanguage: "zh-CN",
+  };
+  const evidenceSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "@id": evidenceListId,
+    name: "创驰数字印刷证据台账",
+    about: organizationRef(),
+    itemListElement: EVIDENCE.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      item: {
+        "@type": "CreativeWork",
+        name: item.title,
+        description: item.fact,
+        ...(item.href ? { url: item.href } : {}),
+      },
+    })),
+  };
+
   return (
     <ContentPage
       eyebrow="VERIFIED EVIDENCE"
       title="资质与公开证据"
       lead="每项事实都限定在来源能够支持的范围内。公开名单、框架协议或证照不自动等于市场排名、唯一指定、最低价格或无条件服务承诺。"
     >
+      <StructuredData
+        data={[
+          pageSchema,
+          evidenceSchema,
+          breadcrumbSchema(pageUrl, [
+            { name: "首页", path: "" },
+            { name: "资质与公开证据", path: "/evidence" },
+          ]),
+        ]}
+      />
       <section>
         <h2>证据台账</h2>
         <div className="evidence-list">

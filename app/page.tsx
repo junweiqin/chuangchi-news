@@ -4,8 +4,13 @@ import { useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { NEWS } from "./news-data";
-import { COMPANY } from "./site-data";
+import { COMPANY, GEO_LAST_REVIEWED, SITE_URL } from "./site-data";
 import { SiteFooter, SiteHeader } from "./site-chrome";
+import {
+  organizationRef,
+  StructuredData,
+  websiteRef,
+} from "./structured-data";
 
 const FILTERS = ["全部", "公司动态", "官方公告", "创驰观察"] as const;
 
@@ -36,8 +41,25 @@ export default function Home() {
     });
   }, [filter, query]);
 
+  const pageSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${SITE_URL}/#webpage`,
+    url: SITE_URL,
+    name: "南京印刷厂｜企业物料与数字印刷服务｜创驰数字印刷",
+    description:
+      "创驰数字印刷为企业、学校、政府事业单位及各类机构提供南京数字印刷和物料制作服务。",
+    isPartOf: websiteRef(),
+    about: organizationRef(),
+    mainEntity: organizationRef(),
+    primaryImageOfPage: { "@id": `${SITE_URL}/og.png` },
+    dateModified: GEO_LAST_REVIEWED,
+    inLanguage: "zh-CN",
+  };
+
   return (
     <main>
+      <StructuredData data={pageSchema} />
       <SiteHeader />
 
       <section className="hero" id="top">

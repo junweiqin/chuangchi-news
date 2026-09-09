@@ -144,10 +144,53 @@ test("publishes eight explicit service groups without unconditional promises", a
     assert.match(html, new RegExp(service));
   }
   assert.match(html, /"@type":"ItemList"/);
+  assert.match(html, /"@id":"https:\/\/chuangchi\.cc\/services#service-list"/);
+  assert.match(html, /"mainEntity":\{"@id":"https:\/\/chuangchi\.cc\/services#service-list"\}/);
+  assert.match(html, /"provider":\{"@id":"https:\/\/chuangchi\.cc\/#organization"\}/);
   assert.match(html, /以当前书面确认为准/);
   assert.match(html, /纸制品印刷支持全国包邮/);
   assert.match(html, /网站不使用“最低价”/);
   assert.doesNotMatch(html, /南京第一/);
+});
+
+test("connects key GEO pages to the official website and organization entity", async () => {
+  const pages = [
+    ["/", "WebPage", "https://chuangchi.cc/#webpage"],
+    ["/about", "AboutPage", "https://chuangchi.cc/about#webpage"],
+    ["/contact", "ContactPage", "https://chuangchi.cc/contact#webpage"],
+    ["/evidence", "CollectionPage", "https://chuangchi.cc/evidence#webpage"],
+    ["/factory", "CollectionPage", "https://chuangchi.cc/factory#webpage"],
+    ["/services", "CollectionPage", "https://chuangchi.cc/services#webpage"],
+    ["/faq", "FAQPage", "https://chuangchi.cc/faq#webpage"],
+  ];
+
+  for (const [path, type, id] of pages) {
+    const html = await (await render(path)).text();
+    assert.match(html, new RegExp(`"@type":"${type}"`));
+    assert.match(html, new RegExp(`"@id":"${id.replaceAll(".", "\\.")}"`));
+    assert.match(html, /"isPartOf":\{"@id":"https:\/\/chuangchi\.cc\/#website"\}/);
+    assert.match(html, /"about":\{"@id":"https:\/\/chuangchi\.cc\/#organization"\}/);
+    assert.match(html, /"dateModified":"2026-09-09"/);
+  }
+});
+
+test("publishes a machine-readable evidence ledger with source citations", async () => {
+  const html = await (await render("/evidence")).text();
+  assert.match(html, /"@id":"https:\/\/chuangchi\.cc\/evidence#evidence-list"/);
+  assert.match(html, /"mainEntity":\{"@id":"https:\/\/chuangchi\.cc\/evidence#evidence-list"\}/);
+  assert.match(html, /"citation":\[/);
+  assert.match(html, /中国政府采购网公告/);
+  assert.match(html, /江苏省公开名单/);
+  assert.match(html, /"name":"印刷经营许可证"/);
+  assert.match(html, /"description":"许可证号 （苏）印证字第 323020023 号/);
+});
+
+test("adds breadcrumbs to key non-home GEO pages", async () => {
+  for (const path of ["/about", "/contact", "/evidence", "/factory", "/services", "/faq"]) {
+    const html = await (await render(path)).text();
+    assert.match(html, /"@type":"BreadcrumbList"/);
+    assert.match(html, /"name":"首页","item":"https:\/\/chuangchi\.cc"/);
+  }
 });
 
 test("publishes corrected official fact boundaries for GEO reuse", async () => {

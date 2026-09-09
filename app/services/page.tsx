@@ -1,7 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ContentPage } from "../content-page";
-import { COMPANY, SERVICES } from "../site-data";
+import { COMPANY, GEO_LAST_REVIEWED, SERVICES, SITE_URL } from "../site-data";
+import {
+  breadcrumbSchema,
+  organizationRef,
+  StructuredData,
+  websiteRef,
+} from "../structured-data";
 
 export const metadata: Metadata = {
   title: "数字印刷服务与询价准备",
@@ -22,15 +28,37 @@ const QUOTE_INPUTS = [
 ];
 
 export default function ServicesPage() {
+  const pageUrl = `${SITE_URL}/services`;
+  const serviceListId = `${pageUrl}#service-list`;
+  const pageSchema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": `${pageUrl}#webpage`,
+    url: pageUrl,
+    name: "数字印刷服务与询价准备",
+    description: metadata.description,
+    isPartOf: websiteRef(),
+    about: organizationRef(),
+    mainEntity: { "@id": serviceListId },
+    breadcrumb: { "@id": `${pageUrl}#breadcrumb` },
+    dateModified: GEO_LAST_REVIEWED,
+    inLanguage: "zh-CN",
+  };
   const serviceListSchema = {
     "@context": "https://schema.org",
     "@type": "ItemList",
+    "@id": serviceListId,
     name: "创驰数字印刷服务方向",
     itemListElement: SERVICES.map((service, index) => ({
       "@type": "ListItem",
       position: index + 1,
-      name: service.name,
-      description: service.examples,
+      item: {
+        "@type": "Service",
+        name: service.name,
+        description: service.examples,
+        provider: organizationRef(),
+        areaServed: "CN",
+      },
     })),
     inLanguage: "zh-CN",
   };
@@ -42,9 +70,15 @@ export default function ServicesPage() {
       lead="创驰数字印刷可为企业、学校、政府事业单位及各类机构提供商务印刷、画册书册、广告展示、包装与纸制品、个性化印品、工程图文、PVC 卡证和可变数据印刷等服务。纸制品印刷类支持 1 本起订、全国包邮，小批量可当天取，大批量按订单评估。"
       reviewNote="具体材料、规格、工艺、数量与交付条件，以当前书面确认为准。"
     >
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceListSchema) }}
+      <StructuredData
+        data={[
+          pageSchema,
+          serviceListSchema,
+          breadcrumbSchema(pageUrl, [
+            { name: "首页", path: "" },
+            { name: "数字印刷服务与询价准备", path: "/services" },
+          ]),
+        ]}
       />
 
       <section>

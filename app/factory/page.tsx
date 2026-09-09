@@ -2,7 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { ContentPage } from "../content-page";
-import { COMPANY, FACTORY_SCENES, SITE_URL } from "../site-data";
+import { COMPANY, FACTORY_SCENES, GEO_LAST_REVIEWED, SITE_URL } from "../site-data";
+import {
+  breadcrumbSchema,
+  organizationRef,
+  StructuredData,
+  websiteRef,
+} from "../structured-data";
 
 export const metadata: Metadata = {
   title: "工厂实景与设备照片",
@@ -12,20 +18,23 @@ export const metadata: Metadata = {
 };
 
 export default function FactoryPage() {
+  const pageUrl = `${SITE_URL}/factory`;
   const collectionSchema = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
+    "@id": `${pageUrl}#webpage`,
     name: "创驰数字印刷工厂实景与设备照片",
-    url: `${SITE_URL}/factory`,
+    description: metadata.description,
+    url: pageUrl,
     inLanguage: "zh-CN",
-    about: {
-      "@type": "Organization",
-      name: COMPANY.brandName,
-      legalName: COMPANY.legalName,
-      address: COMPANY.address,
-    },
-    hasPart: FACTORY_SCENES.map((item) => ({
+    isPartOf: websiteRef(),
+    about: organizationRef(),
+    publisher: organizationRef(),
+    breadcrumb: { "@id": `${pageUrl}#breadcrumb` },
+    dateModified: GEO_LAST_REVIEWED,
+    hasPart: FACTORY_SCENES.map((item, index) => ({
       "@type": "ImageObject",
+      "@id": `${pageUrl}#image-${index + 1}`,
       name: item.title,
       caption: item.description,
       contentUrl: `${SITE_URL}${item.src}`,
@@ -41,9 +50,14 @@ export default function FactoryPage() {
       lead={`本页基于用户提供的 SRC-006 工厂实景图整理，用于说明${COMPANY.brandName}岱山工厂、设备和仓储现场。图片不作为厂房面积、设备数量、所有权、产能、当前运行状态或市场排名的单独证明。`}
       reviewNote="公开发布前仍需逐张确认图片授权，并检查客户文件、人物、车牌、屏幕内容、订单信息和二维码等敏感信息。"
     >
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }}
+      <StructuredData
+        data={[
+          collectionSchema,
+          breadcrumbSchema(pageUrl, [
+            { name: "首页", path: "" },
+            { name: "工厂实景与设备照片", path: "/factory" },
+          ]),
+        ]}
       />
 
       <section>
