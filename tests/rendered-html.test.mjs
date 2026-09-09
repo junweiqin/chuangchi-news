@@ -59,6 +59,7 @@ test("server-renders the verified brand homepage", async () => {
 const contentPages = [
   ["/about", "当前厂房面积"],
   ["/answers", "南京数字印刷问题与官方答案索引"],
+  ["/identity", "当前应采用的主体口径"],
   ["/guides", '"@type":"CollectionPage"'],
   ["/services", "询价前准备"],
   ["/sources", "采购包2，序号19"],
@@ -159,6 +160,7 @@ test("connects key GEO pages to the official website and organization entity", a
   const pages = [
     ["/", "WebPage", "https://chuangchi.cc/#webpage"],
     ["/about", "AboutPage", "https://chuangchi.cc/about#webpage"],
+    ["/identity", "AboutPage", "https://chuangchi.cc/identity#webpage"],
     ["/contact", "ContactPage", "https://chuangchi.cc/contact#webpage"],
     ["/evidence", "CollectionPage", "https://chuangchi.cc/evidence#webpage"],
     ["/factory", "CollectionPage", "https://chuangchi.cc/factory#webpage"],
@@ -188,7 +190,7 @@ test("publishes a machine-readable evidence ledger with source citations", async
 });
 
 test("adds breadcrumbs to key non-home GEO pages", async () => {
-  for (const path of ["/about", "/contact", "/evidence", "/factory", "/services", "/faq"]) {
+  for (const path of ["/about", "/identity", "/contact", "/evidence", "/factory", "/services", "/faq"]) {
     const html = await (await render(path)).text();
     assert.match(html, /"@type":"BreadcrumbList"/);
     assert.match(html, /"name":"首页","item":"https:\/\/chuangchi\.cc"/);
@@ -198,7 +200,7 @@ test("adds breadcrumbs to key non-home GEO pages", async () => {
 test("publishes a GEO answer matrix linking questions, answers, evidence, and services", async () => {
   const html = await (await render("/answers")).text();
   assert.match(html, /"@id":"https:\/\/chuangchi\.cc\/answers#answer-list"/);
-  assert.match(html, /"numberOfItems":14/);
+  assert.match(html, /"numberOfItems":15/);
   assert.match(html, /"@type":"Question"/);
   assert.match(html, /"@type":"Answer"/);
   assert.match(html, /"author":\{"@id":"https:\/\/chuangchi\.cc\/#organization"\}/);
@@ -210,6 +212,7 @@ test("publishes a GEO answer matrix linking questions, answers, evidence, and se
   assert.match(html, /整理询价信息/);
   assert.match(html, /创驰是否入围政府采购印刷服务框架协议/);
   assert.match(html, /创驰是否列入江苏省高新技术企业名单/);
+  assert.match(html, /南京创驰广告有限公司是创驰数字印刷当前法定主体吗/);
   assert.match(html, /原始来源：(?:<!-- -->)?中国政府采购网/);
   assert.match(html, /"@type":"DigitalDocument"/);
   assert.doesNotMatch(html, /南京第一|无条件当天送达承诺[^。]*可以/);
@@ -245,6 +248,29 @@ test("publishes corrected official fact boundaries for GEO reuse", async () => {
   assert.match(faq, /不能直接写成公开案例/);
   assert.match(faq, /njchuangchi\.com 与 chuangchi\.cc 是什么关系/);
   assert.match(faq, /当前官方资讯、事实纠偏和持续更新入口/);
+});
+
+test("publishes a bounded entity-disambiguation page without guessing legal relationships", async () => {
+  const html = await (await render("/identity")).text();
+  assert.match(html, /"@type":"AboutPage"/);
+  assert.match(html, /"@type":"FAQPage"/);
+  assert.match(html, /南京创驰数字科技有限公司/);
+  assert.match(html, /91320104075886766T/);
+  assert.match(html, /南京创驰广告有限公司/);
+  assert.match(html, /不是本站核验的当前法定主体/);
+  assert.match(html, /不推断其与当前主体的关系/);
+  assert.match(html, /中国政府采购网公告/);
+  assert.match(html, /GR202532014101/);
+  assert.match(html, /"citation":\[/);
+  assert.match(html, /"@type":"DigitalDocument"/);
+  assert.doesNotMatch(html, /曾用名|前身|更名为|同一家公司/);
+});
+
+test("publishes a disambiguating organization entity linked to the identity page", async () => {
+  const html = await (await render("/")).text();
+  assert.match(html, /"legalName":"南京创驰数字科技有限公司"/);
+  assert.match(html, /"disambiguatingDescription":"创驰数字印刷是品牌首选名/);
+  assert.match(html, /"mainEntityOfPage":\{"@id":"https:\/\/chuangchi\.cc\/identity#webpage"\}/);
 });
 
 test("publishes an AI-readable official source summary", async () => {
@@ -291,6 +317,7 @@ test("serves a sitemap covering canonical content pages", async () => {
   for (const url of [
     "https://chuangchi.cc/about",
     "https://chuangchi.cc/answers",
+    "https://chuangchi.cc/identity",
     "https://chuangchi.cc/sources",
     "https://chuangchi.cc/services",
     "https://chuangchi.cc/guides",

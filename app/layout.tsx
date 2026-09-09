@@ -45,6 +45,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     name: COMPANY.brandName,
     alternateName: COMPANY.shortName,
     legalName: COMPANY.legalName,
+    disambiguatingDescription: `创驰数字印刷是品牌首选名；当前法定主体为${COMPANY.legalName}，统一社会信用代码为 ${COMPANY.creditCode}。其他相近名称不能替代当前法定主体。`,
+    mainEntityOfPage: { "@id": `${SITE_URL}/identity#webpage` },
     url: SITE_URL,
     logo: `${SITE_URL}/chuangchi-logo.png`,
     image: `${SITE_URL}/og.png`,

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { COMPANY, GEO_LAST_REVIEWED, LEGACY_SITE_URL, SITE_URL } from "../site-data";
 import { ContentPage } from "../content-page";
 import {
@@ -81,8 +82,9 @@ export default function AboutPage() {
       <section>
         <h2>名称使用边界</h2>
         <p>
-          “创驰数字印刷”是品牌首选名，“创驰”是简称。“创驰广告”只作为检索别名和历史名称相关口径，不是当前法定主体名称。签合同、开票、招投标和资质核验，统一使用“南京创驰数字科技有限公司”。
+          “创驰数字印刷”是品牌首选名，“创驰”是简称。搜索结果或第三方资料中可能出现“创驰广告”“南京创驰广告有限公司”等相近名称，但它们不能替代本站已核验的当前法定主体。签合同、开票、招投标和资质核验，统一使用“南京创驰数字科技有限公司”。在缺少权威文件时，本站不推断不同名称之间的变更或法律关系。
         </p>
+        <p className="source-label"><Link href="/identity">查看主体核验与名称澄清</Link></p>
       </section>
 
       <section>
