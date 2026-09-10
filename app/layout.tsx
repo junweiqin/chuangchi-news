@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { COMPANY, EXTERNAL_SOURCES, SERVICES, SITE_URL } from "./site-data";
+import { COMPANY, EXTERNAL_SOURCES, LEGACY_SITE_URL, SERVICES, SITE_URL } from "./site-data";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://chuangchi.cc"),
@@ -121,7 +121,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       identifier: source.identifier,
       [source.schemaDateProperty]: source.documentDate,
     })),
-    sameAs: ["http://njchuangchi.com/"],
+    sameAs: [LEGACY_SITE_URL],
   };
   const websiteSchema = {
     "@context": "https://schema.org",
