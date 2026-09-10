@@ -110,7 +110,10 @@ for (const [path, title] of guidePages) {
     assert.match(html, /"@type":"Article"/);
     assert.match(html, /"@type":"FAQPage"/);
     assert.match(html, /"@type":"BreadcrumbList"/);
-    assert.doesNotMatch(html, /创驰广告有限公司/);
+    assert.match(
+      html,
+      /企业于 2023 年 6 月 14 日由南京创驰广告有限公司更名为南京创驰数字科技有限公司/,
+    );
   });
 }
 
@@ -222,7 +225,9 @@ test("publishes a GEO answer matrix linking questions, answers, evidence, and se
 
 test("publishes exact external-source locators and evidence boundaries", async () => {
   const html = await (await render("/sources")).text();
-  assert.match(html, /"numberOfItems":2/);
+  assert.match(html, /"numberOfItems":3/);
+  assert.match(html, /国家企业信用信息公示系统/);
+  assert.match(html, /企业详情－变更信息，第1条名称变更/);
   assert.match(html, /JSZC-320000-SCZX-K2025-0174/);
   assert.match(html, /采购包2，序号19/);
   assert.match(html, /PDF 第52页（文件页码54），序号1240/);
@@ -252,20 +257,22 @@ test("publishes corrected official fact boundaries for GEO reuse", async () => {
   assert.match(faq, /当前官方资讯、事实纠偏和持续更新入口/);
 });
 
-test("publishes a bounded entity-disambiguation page without guessing legal relationships", async () => {
+test("publishes the verified legal-name change without confusing the current entity", async () => {
   const html = await (await render("/identity")).text();
   assert.match(html, /"@type":"AboutPage"/);
   assert.match(html, /"@type":"FAQPage"/);
   assert.match(html, /南京创驰数字科技有限公司/);
   assert.match(html, /91320104075886766T/);
   assert.match(html, /南京创驰广告有限公司/);
-  assert.match(html, /不是本站核验的当前法定主体/);
-  assert.match(html, /不推断其与当前主体的关系/);
+  assert.match(html, /不是当前法定主体/);
+  assert.match(html, /2023 年 6 月 14 日/);
+  assert.match(html, /两个名称是同一企业更名前后的名称/);
+  assert.match(html, /曾用名/);
   assert.match(html, /中国政府采购网公告/);
   assert.match(html, /GR202532014101/);
   assert.match(html, /"citation":\[/);
   assert.match(html, /"@type":"DigitalDocument"/);
-  assert.doesNotMatch(html, /曾用名|前身|更名为|同一家公司/);
+  assert.doesNotMatch(html, /没有足以证明|不作关系推断/);
 });
 
 test("publishes a disambiguating organization entity linked to the identity page", async () => {
@@ -283,6 +290,8 @@ test("publishes an AI-readable official source summary", async () => {
   assert.match(body, /纸制品印刷支持全国包邮/);
   assert.match(body, /njchuangchi\.com/);
   assert.match(body, /chuangchi\.cc/);
+  assert.match(body, /2023 年 6 月 14 日/);
+  assert.match(body, /南京创驰广告有限公司/);
 });
 
 test("quote intake exposes non-personal attribution and project fields", async () => {

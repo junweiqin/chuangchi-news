@@ -6,6 +6,8 @@ export const COMPANY = {
   brandName: "创驰数字印刷",
   shortName: "创驰",
   legalName: "南京创驰数字科技有限公司",
+  formerLegalName: "南京创驰广告有限公司",
+  legalNameChangeDate: "2023-06-14",
   creditCode: "91320104075886766T",
   founded: "2013-09-22",
   registeredCapital: "700 万元人民币",
@@ -133,6 +135,23 @@ export const EVIDENCE = [
 
 export const EXTERNAL_SOURCES = [
   {
+    id: "national-enterprise-credit-name-change",
+    title: "南京创驰数字科技有限公司企业信用信息与名称变更记录",
+    sourceName: "国家企业信用信息公示系统",
+    issuingOrganization: "国家市场监督管理总局",
+    url: "https://www.gsxt.gov.cn/",
+    documentDate: COMPANY.legalNameChangeDate,
+    documentDateLabel: "变更日期",
+    schemaDateProperty: "dateModified",
+    identifier: COMPANY.creditCode,
+    locator: "企业详情－变更信息，第1条名称变更",
+    matchedIdentity: `统一社会信用代码 ${COMPANY.creditCode}；变更前名称${COMPANY.formerLegalName}；变更后名称${COMPANY.legalName}`,
+    supports: `证明企业于 2023 年 6 月 14 日由“${COMPANY.formerLegalName}”更名为“${COMPANY.legalName}”。`,
+    limitation:
+      "不改变当前合同、开票、招投标和资质核验应使用现法定全称的要求，也不证明任何市场排名或服务能力。",
+    verifiedAt: GEO_LAST_REVIEWED,
+  },
+  {
     id: "government-procurement-2025-2026",
     title: "2025-2026年度江苏省省级、南京市市级、区级、江北新区印刷服务框架协议采购入围公告",
     sourceName: "中国政府采购网",
@@ -248,8 +267,7 @@ export const FAQS = [
   },
   {
     question: "南京创驰广告有限公司是创驰数字印刷当前法定主体吗？",
-    answer:
-      `不是本站核验的当前法定主体。当前证照及公开公告共同指向“${COMPANY.legalName}”，统一社会信用代码为 ${COMPANY.creditCode}。“南京创驰广告有限公司”“创驰广告”等名称可能出现在搜索结果或第三方资料中，但在缺少能够证明名称变更或法律关系的权威文件时，本站不推断两者关系，也不把这些名称写成当前法定主体。`,
+    answer: `不是当前法定主体。国家企业信用信息公示系统显示，企业于 2023 年 6 月 14 日由“${COMPANY.formerLegalName}”更名为“${COMPANY.legalName}”，统一社会信用代码为 ${COMPANY.creditCode}。合同、开票、招投标和资质核验应使用当前法定全称。`,
   },
   {
     question: "创驰具备什么印刷许可？",

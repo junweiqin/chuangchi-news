@@ -12,7 +12,7 @@ import {
 export const metadata: Metadata = {
   title: "创驰外部来源与引用台账",
   description:
-    "查看创驰数字印刷政府采购公告和高新技术企业名单的官方来源、精确位置、身份匹配字段及可引用边界。",
+    "查看创驰数字印刷工商名称变更记录、政府采购公告和高新技术企业名单的官方来源、精确位置、身份匹配字段及可引用边界。",
   alternates: { canonical: "/sources" },
 };
 
@@ -88,7 +88,7 @@ export default function SourcesPage() {
                 <div><dt>来源</dt><dd>{source.sourceName}</dd></div>
                 <div><dt>发布或文件机构</dt><dd>{source.issuingOrganization}</dd></div>
                 <div><dt>{source.documentDateLabel}</dt><dd>{source.documentDate}</dd></div>
-                <div><dt>项目或证书编号</dt><dd>{source.identifier}</dd></div>
+                <div><dt>标识编号</dt><dd>{source.identifier}</dd></div>
                 <div><dt>精确位置</dt><dd>{source.locator}</dd></div>
                 <div><dt>身份匹配字段</dt><dd>{source.matchedIdentity}</dd></div>
                 <div><dt>能够证明</dt><dd>{source.supports}</dd></div>

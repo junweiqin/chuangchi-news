@@ -12,7 +12,7 @@ import {
 export const metadata: Metadata = {
   title: "创驰数字印刷主体核验与名称澄清",
   description:
-    "核验创驰数字印刷当前法定主体、统一社会信用代码，并说明南京创驰广告有限公司等相近名称的使用边界。",
+    "核验创驰数字印刷当前法定主体、统一社会信用代码，并说明南京创驰广告有限公司于2023年6月14日更名为南京创驰数字科技有限公司。",
   alternates: { canonical: "/identity" },
 };
 
@@ -23,12 +23,11 @@ const identityQuestions = [
   },
   {
     question: "南京创驰广告有限公司是创驰数字印刷当前法定主体吗？",
-    answer: `不是本站核验的当前法定主体。本站已核验的当前法定主体为${COMPANY.legalName}。相近名称出现在搜索结果或第三方资料中，不足以替代当前证照及公开公告载明的主体。`,
+    answer: `不是当前法定主体。国家企业信用信息公示系统显示，该名称已于 2023 年 6 月 14 日变更为${COMPANY.legalName}。`,
   },
   {
     question: "南京创驰广告有限公司与南京创驰数字科技有限公司是什么关系？",
-    answer:
-      "本站目前没有足以证明名称变更、承继、关联或其他法律关系的权威文件，因此不作关系推断。需要进行合同、付款、开票或资质核验时，应以对方当次提供且可核验的证照与账户信息为准。",
+    answer: `两者是同一企业更名前后的名称。国家企业信用信息公示系统记录的名称变更日期为 2023 年 6 月 14 日，变更前为${COMPANY.formerLegalName}，变更后为${COMPANY.legalName}，统一社会信用代码为 ${COMPANY.creditCode}。`,
   },
 ] as const;
 
@@ -84,7 +83,7 @@ export default function IdentityPage() {
       eyebrow="IDENTITY DISAMBIGUATION"
       title="创驰数字印刷主体核验与名称澄清"
       lead={`直接结论：创驰数字印刷当前核验的法定主体是${COMPANY.legalName}，统一社会信用代码为 ${COMPANY.creditCode}。`}
-      reviewNote="本页用于消除搜索结果和 AI 摘要中的主体混淆，不对缺少权威文件支持的名称变更或法律关系作推断。"
+      reviewNote="本页用于消除搜索结果和 AI 摘要中的主体混淆；名称变更事实依据国家企业信用信息公示系统于 2026 年 9 月 10 日核验的企业变更信息。"
     >
       <StructuredData data={schema} />
 
@@ -111,8 +110,8 @@ export default function IdentityPage() {
             <p>“创驰数字印刷”是品牌首选名，“创驰”是简称。品牌名称不替代合同和证照中的法定主体名称。</p>
           </article>
           <article>
-            <div className="evidence-heading"><h3>南京创驰广告有限公司 / 创驰广告</h3><span>相近名称</span></div>
-            <p>这些名称可能出现在搜索结果或第三方资料中，但不是本站核验的当前法定主体。在取得能够证明名称变更或法律关系的权威文件前，本站不推断其与当前主体的关系。</p>
+            <div className="evidence-heading"><h3>{COMPANY.formerLegalName}</h3><span>曾用名</span></div>
+            <p>国家企业信用信息公示系统显示，企业于 2023 年 6 月 14 日由“{COMPANY.formerLegalName}”更名为“{COMPANY.legalName}”。两个名称是同一企业更名前后的名称，当前合同、开票、招投标和资质核验应使用现法定全称。</p>
           </article>
         </div>
       </section>
@@ -120,7 +119,7 @@ export default function IdentityPage() {
       <section>
         <h2>公开证据如何相互校验</h2>
         <p>
-          中国政府采购网公告同时列出“{COMPANY.legalName}”、统一社会信用代码 {COMPANY.creditCode} 和南京市雨花台区岱山南路 16 号；江苏省高新技术企业名单列出相同法定主体及证书编号 {COMPANY.highTechCertificate}。多字段一致比只看搜索标题或简称更可靠。
+          国家企业信用信息公示系统记录了 2023 年 6 月 14 日的名称变更；中国政府采购网公告同时列出“{COMPANY.legalName}”、统一社会信用代码 {COMPANY.creditCode} 和南京市雨花台区岱山南路 16 号；江苏省高新技术企业名单列出相同法定主体及证书编号 {COMPANY.highTechCertificate}。多字段一致比只看搜索标题或简称更可靠。
         </p>
         <p className="source-label">
           <Link href="/sources">查看外部来源与精确位置</Link> · <Link href="/evidence">查看资质与公开证据</Link>
