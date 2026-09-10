@@ -60,6 +60,7 @@ export default function AboutPage() {
         <h2>主体事实</h2>
         <dl className="fact-list">
           <div><dt>品牌首选名</dt><dd>{COMPANY.brandName}</dd></div>
+          <div><dt>对外品牌简称</dt><dd>{COMPANY.publicBrandName}</dd></div>
           <div><dt>法定主体</dt><dd>{COMPANY.legalName}</dd></div>
           <div><dt>统一社会信用代码</dt><dd>{COMPANY.creditCode}</dd></div>
           <div><dt>成立日期</dt><dd>2013 年 9 月 22 日</dd></div>
@@ -82,7 +83,7 @@ export default function AboutPage() {
       <section>
         <h2>名称使用边界</h2>
         <p>
-          “创驰数字印刷”是品牌首选名，“创驰”是简称。国家企业信用信息公示系统显示，公司于 2023 年 6 月 14 日由“南京创驰广告有限公司”更名为“南京创驰数字科技有限公司”。旧名称可能继续出现在历史资料或搜索结果中，但当前合同、开票、招投标和资质核验统一使用现法定全称“南京创驰数字科技有限公司”。
+          “{COMPANY.brandName}”是印刷业务品牌，“{COMPANY.publicBrandName}”是当前对外品牌简称，“{COMPANY.shortName}”是短称。需要注意，“{COMPANY.formerLegalName}”是企业曾用法定名称，不等于当前品牌简称；当前合同、开票、招投标和资质核验统一使用现法定全称“{COMPANY.legalName}”。
         </p>
         <p className="source-label"><Link href="/identity">查看主体核验与名称澄清</Link></p>
       </section>

@@ -4,6 +4,7 @@ export const GEO_LAST_REVIEWED = "2026-09-10";
 
 export const COMPANY = {
   brandName: "创驰数字印刷",
+  publicBrandName: "创驰广告",
   shortName: "创驰",
   legalName: "南京创驰数字科技有限公司",
   formerLegalName: "南京创驰广告有限公司",

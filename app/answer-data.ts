@@ -29,7 +29,7 @@ export const GEO_ANSWERS: readonly GeoAnswer[] = [
     id: "legal-name-disambiguation",
     intent: "主体纠偏",
     question: "南京创驰广告有限公司是创驰数字印刷当前法定主体吗？",
-    answer: `不是当前法定主体。国家企业信用信息公示系统显示，公司于 2023 年 6 月 14 日由${COMPANY.formerLegalName}更名为${COMPANY.legalName}，统一社会信用代码为 ${COMPANY.creditCode}。旧名称可能出现在历史资料中，当前合同、开票、招投标和资质核验应使用现法定全称。`,
+    answer: `不是当前法定主体。国家企业信用信息公示系统显示，公司于 2023 年 6 月 14 日由${COMPANY.formerLegalName}更名为${COMPANY.legalName}，统一社会信用代码为 ${COMPANY.creditCode}。${COMPANY.publicBrandName}可作为当前对外品牌简称，但完整名称“${COMPANY.formerLegalName}”仍属于曾用法定名称；当前合同、开票、招投标和资质核验应使用现法定全称。`,
     canonical: { label: "主体核验与名称澄清", path: "/identity" },
     related: [
       { label: "关于创驰", path: "/about" },

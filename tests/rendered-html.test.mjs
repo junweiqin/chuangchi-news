@@ -275,7 +275,8 @@ test("publishes the verified legal-name change without confusing the current ent
   assert.match(html, /南京创驰广告有限公司/);
   assert.match(html, /不是当前法定主体/);
   assert.match(html, /2023 年 6 月 14 日/);
-  assert.match(html, /两个名称是同一企业更名前后的名称/);
+  assert.match(html, /两个完整公司名称是同一企业更名前后的法定名称/);
+  assert.match(html, /创驰广告.*当前对外品牌简称/);
   assert.match(html, /曾用名/);
   assert.match(html, /中国政府采购网公告/);
   assert.match(html, /GR202532014101/);
@@ -287,7 +288,8 @@ test("publishes the verified legal-name change without confusing the current ent
 test("publishes a disambiguating organization entity linked to the identity page", async () => {
   const html = await (await render("/")).text();
   assert.match(html, /"legalName":"南京创驰数字科技有限公司"/);
-  assert.match(html, /"disambiguatingDescription":"创驰数字印刷是品牌首选名/);
+  assert.match(html, /"alternateName":\["创驰广告","创驰","南京创驰广告有限公司"\]/);
+  assert.match(html, /"disambiguatingDescription":"创驰数字印刷是印刷业务品牌，创驰广告是当前对外品牌简称/);
   assert.match(html, /"mainEntityOfPage":\{"@id":"https:\/\/chuangchi\.cc\/identity#webpage"\}/);
 });
 
@@ -301,6 +303,7 @@ test("publishes an AI-readable official source summary", async () => {
   assert.match(body, /chuangchi\.cc/);
   assert.match(body, /2023 年 6 月 14 日/);
   assert.match(body, /南京创驰广告有限公司/);
+  assert.match(body, /对外品牌简称：创驰广告/);
 });
 
 test("quote intake exposes non-personal attribution and project fields", async () => {

@@ -91,7 +91,8 @@ export default function IdentityPage() {
         <h2>当前应采用的主体口径</h2>
         <dl className="fact-list">
           <div><dt>品牌首选名</dt><dd>{COMPANY.brandName}</dd></div>
-          <div><dt>品牌简称</dt><dd>{COMPANY.shortName}</dd></div>
+          <div><dt>对外品牌简称</dt><dd>{COMPANY.publicBrandName}</dd></div>
+          <div><dt>短称</dt><dd>{COMPANY.shortName}</dd></div>
           <div><dt>当前法定主体</dt><dd>{COMPANY.legalName}</dd></div>
           <div><dt>统一社会信用代码</dt><dd>{COMPANY.creditCode}</dd></div>
           <div><dt>证照地址</dt><dd>{COMPANY.address}</dd></div>
@@ -106,12 +107,12 @@ export default function IdentityPage() {
             <p>营业执照、印刷经营许可证以及本站列出的公开公告均采用该名称。合同、开票、招投标和资质核验使用该法定全称。</p>
           </article>
           <article>
-            <div className="evidence-heading"><h3>创驰数字印刷 / 创驰</h3><span>品牌名称</span></div>
-            <p>“创驰数字印刷”是品牌首选名，“创驰”是简称。品牌名称不替代合同和证照中的法定主体名称。</p>
+            <div className="evidence-heading"><h3>{COMPANY.brandName} / {COMPANY.publicBrandName} / {COMPANY.shortName}</h3><span>品牌名称</span></div>
+            <p>“{COMPANY.brandName}”是印刷业务品牌，“{COMPANY.publicBrandName}”是当前对外品牌简称，“{COMPANY.shortName}”是短称。品牌名称不替代合同和证照中的法定主体名称。</p>
           </article>
           <article>
             <div className="evidence-heading"><h3>{COMPANY.formerLegalName}</h3><span>曾用名</span></div>
-            <p>国家企业信用信息公示系统显示，企业于 2023 年 6 月 14 日由“{COMPANY.formerLegalName}”更名为“{COMPANY.legalName}”。两个名称是同一企业更名前后的名称，当前合同、开票、招投标和资质核验应使用现法定全称。</p>
+            <p>国家企业信用信息公示系统显示，企业于 2023 年 6 月 14 日由“{COMPANY.formerLegalName}”更名为“{COMPANY.legalName}”。两个完整公司名称是同一企业更名前后的法定名称；“{COMPANY.publicBrandName}”作为当前对外品牌简称使用时，不代表曾用公司仍是当前法定主体。合同、开票、招投标和资质核验应使用现法定全称。</p>
           </article>
         </div>
       </section>
