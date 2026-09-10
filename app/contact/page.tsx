@@ -36,7 +36,7 @@ export default function ContactPage() {
     <ContentPage
       eyebrow="CONTACT STATUS"
       title="联系与官方入口状态"
-      lead="本页列出已确认可公开的官方域名、证照地址、座机、手机、公司 QQ 和工厂营业时间。涉及到店、加急、安装或大批量订单，建议先电话确认。"
+      lead="本页列出已确认可公开的官方域名、证照地址、工厂座机、公司客服、本人业务对接、公司 QQ 和工厂营业时间。涉及到店、加急、安装或大批量订单，建议先电话确认。"
       reviewNote="节假日、特殊排产、现场安装范围和地图平台入口仍按当次沟通确认。"
     >
       <StructuredData
@@ -66,8 +66,9 @@ export default function ContactPage() {
           <div><dt>法定主体</dt><dd>{COMPANY.legalName}</dd></div>
           <div><dt>最新联系口径</dt><dd>{COMPANY.contactSource}</dd></div>
           <div><dt>证照地址</dt><dd>{COMPANY.address}</dd></div>
-          <div><dt>座机</dt><dd>{COMPANY.landline}</dd></div>
-          <div><dt>手机</dt><dd>{COMPANY.displayMobile}</dd></div>
+          <div><dt>工厂座机</dt><dd>{COMPANY.landline}</dd></div>
+          <div><dt>公司客服</dt><dd>{COMPANY.displayMobile}</dd></div>
+          <div><dt>本人业务对接</dt><dd>{COMPANY.businessContactName}，{COMPANY.displayBusinessMobile}</dd></div>
           <div><dt>公司 QQ</dt><dd>{COMPANY.companyQq}</dd></div>
           <div><dt>工厂营业时间</dt><dd>{COMPANY.weekdayHours}；{COMPANY.weekendHours}</dd></div>
           <div><dt>南京送货</dt><dd>{COMPANY.localDeliveryPolicy}</dd></div>

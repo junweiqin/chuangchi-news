@@ -66,6 +66,14 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       {
         "@type": "ContactPoint",
         telephone: COMPANY.mobile,
+        contactType: "customer service",
+        areaServed: "CN",
+        availableLanguage: ["zh-CN"],
+      },
+      {
+        "@type": "ContactPoint",
+        name: COMPANY.businessContactName,
+        telephone: COMPANY.businessMobile,
         contactType: "sales",
         areaServed: "CN",
         availableLanguage: ["zh-CN"],

@@ -1,6 +1,6 @@
 export const SITE_URL = "https://chuangchi.cc";
 export const LEGACY_SITE_URL = "http://www.njchuangchi.com";
-export const GEO_LAST_REVIEWED = "2026-09-09";
+export const GEO_LAST_REVIEWED = "2026-09-10";
 
 export const COMPANY = {
   brandName: "创驰数字印刷",
@@ -13,11 +13,14 @@ export const COMPANY = {
   landline: "025-52812216",
   mobile: "17302579071",
   displayMobile: "173 0257 9071",
+  businessContactName: "秦峻伟",
+  businessMobile: "13813981260",
+  displayBusinessMobile: "138 1398 1260",
   companyQq: "800102188",
   weekdayHours: "周一至周五 8:30-23:00",
   weekendHours: "周六至周日 9:00-21:00",
   contactSource:
-    "岱山工厂联系方式图片为联系方式、营业时间、电话、工厂门店的最新正确口径",
+    "企业提供的个人业务海报与公司客服海报为当前联系方式的最新正确口径",
   currentFactoryArea: "3600 平方米",
   plannedFactoryArea: "5000 平方米",
   plannedFactoryLaunch: "2026 年底",
@@ -83,7 +86,7 @@ export const OFFICIAL_BOUNDARIES = [
   },
   {
     title: "当前接待与联系方式",
-    fact: `${COMPANY.contactSource}。${COMPANY.closedStoreNote}。座机 ${COMPANY.landline}，手机 ${COMPANY.displayMobile}，公司 QQ ${COMPANY.companyQq}。`,
+    fact: `${COMPANY.contactSource}。${COMPANY.closedStoreNote}。工厂座机 ${COMPANY.landline}，公司客服 ${COMPANY.displayMobile}，${COMPANY.businessContactName}本人业务对接 ${COMPANY.displayBusinessMobile}，公司 QQ ${COMPANY.companyQq}。`,
   },
   {
     title: "配送与包邮口径",

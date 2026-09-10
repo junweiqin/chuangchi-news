@@ -52,6 +52,8 @@ test("server-renders the verified brand homepage", async () => {
   assert.match(html, /"name":"企业商务印刷"/);
   assert.match(html, /"publisher":\{"@id":"https:\/\/chuangchi\.cc\/#organization"\}/);
   assert.match(html, /"telephone":"025-52812216"/);
+  assert.match(html, /"telephone":"17302579071","contactType":"customer service"/);
+  assert.match(html, /"name":"秦峻伟","telephone":"13813981260","contactType":"sales"/);
   assert.match(html, /"openingHoursSpecification"/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape/i);
 });
@@ -71,7 +73,7 @@ const contentPages = [
   ["/evidence", "（苏）印证字第 323020023 号"],
   ["/factory", "SRC-006 工厂实景图"],
   ["/faq", "\"@type\":\"FAQPage\""],
-  ["/contact", "岱山工厂联系方式图片为联系方式"],
+  ["/contact", "138 1398 1260"],
   ["/news/1", "今天起，chuangchi.cc 正式启用"],
 ];
 
@@ -174,7 +176,7 @@ test("connects key GEO pages to the official website and organization entity", a
     assert.match(html, new RegExp(`"@id":"${id.replaceAll(".", "\\.")}"`));
     assert.match(html, /"isPartOf":\{"@id":"https:\/\/chuangchi\.cc\/#website"\}/);
     assert.match(html, /"about":\{"@id":"https:\/\/chuangchi\.cc\/#organization"\}/);
-    assert.match(html, /"dateModified":"2026-09-09"/);
+    assert.match(html, /"dateModified":"2026-09-10"/);
   }
 });
 
