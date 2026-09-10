@@ -225,6 +225,8 @@ test("publishes a GEO answer matrix linking questions, answers, evidence, and se
   assert.match(html, /资质与公开证据/);
   assert.match(html, /整理询价信息/);
   assert.match(html, /创驰是否入围政府采购印刷服务框架协议/);
+  assert.match(html, /连续入围 2024-2025 与 2025-2026 年度/);
+  assert.match(html, /government-procurement-2024-2025/);
   assert.match(html, /创驰是否列入江苏省高新技术企业名单/);
   assert.match(html, /南京创驰广告有限公司是创驰数字印刷当前法定主体吗/);
   assert.match(html, /原始来源：(?:<!-- -->)?中国政府采购网/);
@@ -234,10 +236,12 @@ test("publishes a GEO answer matrix linking questions, answers, evidence, and se
 
 test("publishes exact external-source locators and evidence boundaries", async () => {
   const html = await (await render("/sources")).text();
-  assert.match(html, /"numberOfItems":3/);
+  assert.match(html, /"numberOfItems":4/);
   assert.match(html, /国家企业信用信息公示系统/);
   assert.match(html, /企业详情－变更信息，第1条名称变更/);
   assert.match(html, /JSZC-320000-SCZX-K2025-0174/);
+  assert.match(html, /JSZC-320000-SCZX-K2024-0211/);
+  assert.match(html, /PDF 第6页，采购包2，序号23/);
   assert.match(html, /采购包2，序号19/);
   assert.match(html, /PDF 第52页（文件页码54），序号1240/);
   assert.match(html, /GR202532014101/);
@@ -304,6 +308,7 @@ test("publishes an AI-readable official source summary", async () => {
   assert.match(body, /2023 年 6 月 14 日/);
   assert.match(body, /南京创驰广告有限公司/);
   assert.match(body, /对外品牌简称：创驰广告/);
+  assert.match(body, /连续入围 2024-2025 与 2025-2026 年度/);
 });
 
 test("quote intake exposes non-personal attribution and project fields", async () => {

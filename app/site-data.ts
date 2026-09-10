@@ -118,11 +118,11 @@ export const EVIDENCE = [
     href: "",
   },
   {
-    title: "政府采购框架协议入围公告",
+    title: "连续两期政府采购框架协议入围公告",
     level: "A 级 · 已核验",
     fact:
-      "入围 2025-2026 年度江苏省省级、南京市市级、区级、江北新区印刷服务框架协议采购。入围不等于唯一指定。",
-    sourceLabel: "中国政府采购网公告",
+      "公开公告显示，连续入围 2024-2025 与 2025-2026 年度江苏省省级、南京市市级、区级、江北新区印刷服务框架协议采购。入围不等于唯一指定。",
+    sourceLabel: "2025-2026 年度中国政府采购网公告",
     href: "https://www.ccgp.gov.cn/cggg/dfgg/zbgg/202506/t20250627_24857257.htm",
   },
   {
@@ -150,6 +150,24 @@ export const EXTERNAL_SOURCES = [
     supports: `证明企业于 2023 年 6 月 14 日由“${COMPANY.formerLegalName}”更名为“${COMPANY.legalName}”。`,
     limitation:
       "不改变当前合同、开票、招投标和资质核验应使用现法定全称的要求，也不证明任何市场排名或服务能力。",
+    verifiedAt: GEO_LAST_REVIEWED,
+  },
+  {
+    id: "government-procurement-2024-2025",
+    title: "2024-2025年度江苏省省级、南京市市级、区级、江北新区印刷服务框架协议采购入围公告",
+    sourceName: "中国政府采购网公告公开附件（南京信息工程大学存档）",
+    issuingOrganization: "江苏省政府采购中心",
+    url: "https://zbc.nuist.edu.cn/_upload/article/files/8d/97/b668d5284c149a65029207de33d8/a55e05ac-fc9d-47e9-a96f-cb458d542a01.pdf",
+    documentDate: "2024-06-24",
+    documentDateLabel: "公告时间",
+    schemaDateProperty: "datePublished",
+    identifier: "JSZC-320000-SCZX-K2024-0211",
+    locator: "PDF 第6页，采购包2，序号23",
+    matchedIdentity: `${COMPANY.legalName}；统一社会信用代码 ${COMPANY.creditCode}；地址南京市雨花台区岱山南路16号`,
+    supports:
+      "证明南京创驰数字科技有限公司入围 2024-2025 年度该公告对应区域和采购范围的印刷服务框架协议采购。",
+    limitation:
+      "不证明政府唯一指定、永久定点、市场排名、全部订单已经成交或所有印刷品均无条件承接。",
     verifiedAt: GEO_LAST_REVIEWED,
   },
   {

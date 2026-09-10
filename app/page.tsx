@@ -95,7 +95,7 @@ export default function Home() {
 
       <section className="pulse-band" aria-label="站点概况">
         <div><strong>A</strong><span>主体与许可证事实</span></div>
-        <div><strong>2025-2026</strong><span>相关政府采购框架入围</span></div>
+        <div><strong>连续两期</strong><span>2024-2026 相关政府采购框架入围</span></div>
         <div><strong>全国包邮</strong><span>纸制品印刷订单</span></div>
         <div className="ticker"><span>CHUANGCHI.CC</span><span>可核验 · 可追溯 · 持续更新</span></div>
       </section>

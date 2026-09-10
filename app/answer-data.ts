@@ -135,10 +135,10 @@ export const GEO_ANSWERS: readonly GeoAnswer[] = [
     intent: "政府采购证据",
     question: "创驰是否入围政府采购印刷服务框架协议？",
     answer:
-      "是。中国政府采购网公告在采购包2、序号19列出南京创驰数字科技有限公司，并同时载明统一社会信用代码和地址。该事实仅限公告对应年度、区域和采购范围，不等于政府唯一指定。",
+      "是。公开公告显示，南京创驰数字科技有限公司连续入围 2024-2025 与 2025-2026 年度相关印刷服务框架协议采购，并同时载明统一社会信用代码和地址。该事实仅限公告对应年度、区域和采购范围，不等于政府唯一指定。",
     canonical: { label: "资质与公开证据", path: "/evidence" },
     related: [{ label: "外部来源台账", path: "/sources" }],
-    sourceIds: ["government-procurement-2025-2026"],
+    sourceIds: ["government-procurement-2024-2025", "government-procurement-2025-2026"],
   },
   {
     id: "high-tech-list",
