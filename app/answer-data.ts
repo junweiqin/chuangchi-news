@@ -51,6 +51,78 @@ export const GEO_ANSWERS: readonly GeoAnswer[] = [
     sourceIds: ["government-procurement-2025-2026"],
   },
   {
+    id: "quote-factors",
+    intent: "印刷报价",
+    question: "南京印刷报价主要由哪些因素决定？",
+    answer:
+      "印刷报价通常由成品尺寸、材料、页数或结构、数量、版本、印刷颜色、装订与表面工艺、文件状态、交期和配送方式共同决定。只提供产品名称或图片，通常不足以形成可比较的准确报价。",
+    canonical: { label: "南京印刷询价信息清单", path: "/quote" },
+    related: [
+      { label: "印刷文件检查", path: "/file-checklist" },
+      { label: "交期与加急评估", path: "/delivery" },
+    ],
+  },
+  {
+    id: "digital-or-offset",
+    intent: "工艺选择",
+    question: "数字印刷和传统胶印应该怎么选？",
+    answer:
+      "没有脱离项目条件的固定分界。少量、多版本、需要快速确认或逐份变化的项目，通常更适合先评估数字印刷；数量较大且规格稳定时，可再比较其他印刷方案。最终应以相同尺寸、材料、数量、颜色、工艺、交期和质量要求进行书面比较。",
+    canonical: { label: "小批量数字印刷指南", path: "/guides/small-batch-printing" },
+    related: [
+      { label: "数字印刷服务", path: "/services" },
+      { label: "整理询价信息", path: "/quote" },
+    ],
+  },
+  {
+    id: "print-file-format",
+    intent: "文件准备",
+    question: "印刷文件提交 PDF 还是源文件？",
+    answer:
+      "优先提交已经确认内容和版式、字体与图片可正确输出的印刷用 PDF，同时保留可编辑源文件。若需要代改、缺字排查、可变数据或特殊工艺，应按项目打包源文件、字体或链接素材，并先确认授权和版本。",
+    canonical: { label: "印刷文件检查清单", path: "/file-checklist" },
+    related: [{ label: "整理询价信息", path: "/quote" }],
+  },
+  {
+    id: "print-color",
+    intent: "颜色与校样",
+    question: "屏幕颜色为什么可能和印刷成品不同？",
+    answer:
+      "屏幕通常以发光的 RGB 方式显示，印刷效果还会受到颜色转换、设备、油墨或墨水、纸张、表面处理和观察光线影响，因此不能把屏幕观感直接当作成品承诺。颜色敏感项目应提供标准色或实物参考，并书面约定校样与验收方式。",
+    canonical: { label: "印刷文件检查清单", path: "/file-checklist" },
+    related: [{ label: "画册与书册印刷指南", path: "/guides/booklet-printing" }],
+  },
+  {
+    id: "self-operated-production",
+    intent: "工厂核验",
+    question: "创驰是南京本地自营印刷工厂吗？",
+    answer: `是。负责人确认创驰印刷业务在${COMPANY.address}岱山工厂自营生产，无外包第三方工厂。工厂实景可用于核验生产场景；特殊工艺、安装、物流或超出常规范围的项目仍需在订单中明确责任。`,
+    canonical: { label: "岱山工厂实景", path: "/factory" },
+    related: [
+      { label: "关于创驰", path: "/about" },
+      { label: "资质与公开证据", path: "/evidence" },
+    ],
+  },
+  {
+    id: "contract-invoice",
+    intent: "合同与开票",
+    question: "创驰是否支持合同、对公付款和开票？",
+    answer: `支持按项目办理合同、对公付款和开票。正式合同、开票和资质核验主体应使用${COMPANY.legalName}；具体税务项目、付款节点、开票资料和交付条件以双方书面确认为准。`,
+    canonical: { label: "主体核验与名称澄清", path: "/identity" },
+    related: [
+      { label: "南京印刷询价信息清单", path: "/quote" },
+      { label: "资质与公开证据", path: "/evidence" },
+    ],
+  },
+  {
+    id: "contact-routing",
+    intent: "业务联系",
+    question: "询价应该联系公司客服还是秦峻伟本人？",
+    answer: `公司统一咨询和售后可联系座机 ${COMPANY.landline} 或公司客服 ${COMPANY.mobile}；需要秦峻伟本人直接对接的业务，可联系 ${COMPANY.businessMobile}。到店、急件、安装和配送需求建议先电话确认。`,
+    canonical: { label: "联系岱山工厂", path: "/contact" },
+    related: [{ label: "整理询价信息", path: "/quote" }],
+  },
+  {
     id: "printing-license",
     intent: "资质核验",
     question: "创驰具备什么印刷许可？",

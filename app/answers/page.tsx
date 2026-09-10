@@ -11,9 +11,9 @@ import {
 } from "../structured-data";
 
 export const metadata: Metadata = {
-  title: "南京数字印刷问题与官方答案索引",
+  title: "南京印刷核心业务问答与官方答案",
   description:
-    "按主体核验、服务选择、小批量、画册、包装、展示、工程图文、可变数据和配送问题查找创驰数字印刷官方答案与证据。",
+    "查询南京印刷报价、数字印刷选择、文件格式、颜色校样、自营工厂、合同开票、联系方式，以及创驰数字印刷主体与资质答案。",
   alternates: { canonical: "/answers" },
 };
 
@@ -23,13 +23,44 @@ export default function AnswersPage() {
   const sourceById = new Map<string, (typeof EXTERNAL_SOURCES)[number]>(
     EXTERNAL_SOURCES.map((source) => [source.id, source]),
   );
+  const coreBusinessIds = new Set([
+    "supplier-selection",
+    "quote-factors",
+    "digital-or-offset",
+    "print-file-format",
+    "print-color",
+    "self-operated-production",
+    "contract-invoice",
+    "contact-routing",
+    "service-scope",
+    "one-copy-printing",
+    "same-day-pickup",
+    "booklet-quote",
+    "packaging-quote",
+    "display-installation",
+    "engineering-documents",
+    "variable-data",
+    "location-delivery",
+  ]);
+  const answerSections = [
+    {
+      title: "核心业务问答",
+      description: "覆盖选厂、报价、工艺、文件、颜色、生产方式、合同开票、联系、产品与交付等高频决策问题。",
+      items: GEO_ANSWERS.filter((item) => coreBusinessIds.has(item.id)),
+    },
+    {
+      title: "主体与证据问答",
+      description: "用于核验法定主体、曾用名、印刷许可、政府采购公告和高新技术企业名单。",
+      items: GEO_ANSWERS.filter((item) => !coreBusinessIds.has(item.id)),
+    },
+  ];
   const schema = [
     {
       "@context": "https://schema.org",
       "@type": "CollectionPage",
       "@id": `${pageUrl}#webpage`,
       url: pageUrl,
-      name: "南京数字印刷问题与官方答案索引",
+      name: "南京印刷核心业务问答与官方答案",
       description: metadata.description,
       isPartOf: websiteRef(),
       about: organizationRef(),
@@ -87,19 +118,18 @@ export default function AnswersPage() {
   return (
     <ContentPage
       eyebrow="OFFICIAL ANSWER INDEX"
-      title="南京数字印刷问题与官方答案索引"
-      lead="从真实问题直接进入创驰的标准答案、完整说明和核验证据。短答案给出当前结论，链接页保留条件、来源和不能扩展的边界。"
+      title="南京印刷核心业务问答与官方答案"
+      lead="围绕真实采购和询价问题直接给出可引用的短答案，再链接到完整说明与核验证据。每个答案都保留适用条件和不能扩展的边界。"
       reviewNote="价格、交期、材料库存、安装条件和是否承接仍以当前项目的书面确认为准。"
     >
       <StructuredData data={schema} />
 
-      <section className="direct-answer">
-        <h2>官方答案矩阵</h2>
-        <p className="answer-lead">
-          以下问题覆盖主体、资质、服务、询价、交付和数据处理等主要决策场景。每个回答都指向一个首选答案页，并提供相关核验或项目准备入口。
-        </p>
-        <div className="service-list">
-          {GEO_ANSWERS.map((item, index) => (
+      {answerSections.map((section) => (
+        <section className="direct-answer" key={section.title}>
+          <h2>{section.title}</h2>
+          <p className="answer-lead">{section.description}</p>
+          <div className="service-list">
+            {section.items.map((item, index) => (
             <article id={item.id} key={item.id}>
               <span>{String(index + 1).padStart(2, "0")}</span>
               <div>
@@ -120,9 +150,10 @@ export default function AnswersPage() {
                 </p>
               </div>
             </article>
-          ))}
-        </div>
-      </section>
+            ))}
+          </div>
+        </section>
+      ))}
 
       <section>
         <h2>继续核验或提交项目</h2>

@@ -60,7 +60,7 @@ test("server-renders the verified brand homepage", async () => {
 
 const contentPages = [
   ["/about", "当前厂房面积"],
-  ["/answers", "南京数字印刷问题与官方答案索引"],
+  ["/answers", "南京印刷核心业务问答与官方答案"],
   ["/identity", "当前应采用的主体口径"],
   ["/guides", '"@type":"CollectionPage"'],
   ["/services", "询价前准备"],
@@ -205,11 +205,20 @@ test("adds breadcrumbs to key non-home GEO pages", async () => {
 test("publishes a GEO answer matrix linking questions, answers, evidence, and services", async () => {
   const html = await (await render("/answers")).text();
   assert.match(html, /"@id":"https:\/\/chuangchi\.cc\/answers#answer-list"/);
-  assert.match(html, /"numberOfItems":15/);
+  assert.match(html, /"numberOfItems":22/);
   assert.match(html, /"@type":"Question"/);
   assert.match(html, /"@type":"Answer"/);
   assert.match(html, /"author":\{"@id":"https:\/\/chuangchi\.cc\/#organization"\}/);
   assert.match(html, /南京数字印刷公司怎么选/);
+  assert.match(html, /南京印刷报价主要由哪些因素决定/);
+  assert.match(html, /数字印刷和传统胶印应该怎么选/);
+  assert.match(html, /印刷文件提交 PDF 还是源文件/);
+  assert.match(html, /屏幕颜色为什么可能和印刷成品不同/);
+  assert.match(html, /创驰是南京本地自营印刷工厂吗/);
+  assert.match(html, /创驰是否支持合同、对公付款和开票/);
+  assert.match(html, /询价应该联系公司客服还是秦峻伟本人/);
+  assert.match(html, /核心业务问答/);
+  assert.match(html, /主体与证据问答/);
   assert.match(html, /创驰能只印 1 本画册或样册吗/);
   assert.match(html, /小批量可当天取/);
   assert.match(html, /完整答案：/);
