@@ -24,7 +24,7 @@ export const COMPANY = {
   weekendHours: "周六至周日 9:00-21:00",
   contactSource:
     "企业提供的个人业务海报与公司客服海报为当前联系方式的最新正确口径",
-  currentFactoryArea: "3600 平方米",
+  currentFactoryArea: "3000 平方米",
   plannedFactoryArea: "5000 平方米",
   plannedFactoryLaunch: "2026 年底",
   primaryEquipment: "HP Indigo 100K",
@@ -305,7 +305,7 @@ export const FAQS = [
   {
     question: "创驰当前厂房面积应按多少写？",
     answer:
-      "创驰当前厂房面积为 3600 平方米，公司计划于 2026 年底搬迁至 5000 平方米新厂。新厂正式启用前，5000 平方米只作为搬迁计划表述，不能写成当前已投产能力。",
+      "创驰当前厂房面积为 3000 平方米，公司计划于 2026 年底搬迁至 5000 平方米新厂。新厂正式启用前，5000 平方米只作为搬迁计划表述，不能写成当前已投产能力。",
   },
   {
     question: "创驰是否有 HP Indigo 100K？",
